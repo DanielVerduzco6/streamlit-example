@@ -71,7 +71,7 @@ st.title('Ruta Óptima con Q-Learning')
 st.subheader('Imagen desde Archivo Local')
 imagen = st.file_uploader('grafoCut.png')
 if imagen is not None:
-    st.image(imagen, caption='Imagen cargada desde archivo local', use_column_width=True)
+    st.image(imagen, caption='grafoCut.png', use_column_width=True)
 
 estado_inicio_letra = st.sidebar.selectbox("Punto de Inicio", list(de_de_estados.keys()))
 estado_final_letra = st.sidebar.selectbox("Punto Final", list(de_de_estados.keys()))
