@@ -72,6 +72,7 @@ estado_inicio_letra = st.sidebar.selectbox("Punto de Inicio", list(de_de_estados
 estado_final_letra = st.sidebar.selectbox("Punto Final", list(de_de_estados.keys()))
 
 estado_intermedio = []
+num = 0  # Inicializar num con 0
 if st.sidebar.checkbox("Agregar Punto Intermedio"):
     num = st.sidebar.number_input("Cantidad de Puntos Intermedios", min_value=1, max_value=10)
     for i in range(num):
