@@ -68,6 +68,11 @@ def recompensas(estado_final, estado_intermedio, num):
 # Elección del punto inicial, final e intermedios
 st.title('Ruta Óptima con Q-Learning')
 
+# Mostrar imagen
+st.subheader('Imagen Predeterminada')
+imagen_predeterminada = "https://raw.githubusercontent.com/DanielVerduzco6/streamlit-example/master/grafoCut.png"  # Reemplaza con la ruta de tu imagen
+st.image(imagen_predeterminada, caption='Imagen Predeterminada', use_column_width=True)
+
 estado_inicio_letra = st.sidebar.selectbox("Punto de Inicio", list(de_de_estados.keys()))
 estado_final_letra = st.sidebar.selectbox("Punto Final", list(de_de_estados.keys()))
 
