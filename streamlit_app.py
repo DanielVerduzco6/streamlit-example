@@ -8,6 +8,9 @@ de_de_estados = {
     'P': 15, 'Q': 16, 'R': 17, 'S': 18, 'T': 19
 }
 
+# Definición del diccionario de estados inverso
+estados = {v: k for k, v in de_de_estados.items()}
+
 # Inicialización de las recompensas
 R = np.array([
     [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -36,9 +39,6 @@ R = np.array([
 gamma = 0.75
 alpha = 0.9
 
-# Inicialización de los valores Q
-Q = np.zeros([20, 20])
-
 # Definimos la función del ambiente
 def environment(estado_actual):
     accion_realizable = [j for j in range(20) if R[estado_actual, j] > 0]
@@ -60,7 +60,7 @@ def recompensas(estado_final, estado_intermedio, num):
                         break
 
 # Definimos la función de la ruta
-def ruta(estado_inicio, estado_final):
+def ruta(estado_inicio, estado_final, estados):
     st.write("\nLa ruta empieza en el estado:", estados[estado_inicio])
     estado_actual = estado_inicio
     while True:
@@ -108,7 +108,7 @@ def main():
     st.write(Q.astype(int))
 
     # Mostrar la ruta
-    ruta(estado_inicio, estado_final)
+    ruta(estado_inicio, estado_final, estados)
 
 # Ejecutar la aplicación
 if __name__ == "__main__":
