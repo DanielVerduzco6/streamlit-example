@@ -68,12 +68,6 @@ def recompensas(estado_final, estado_intermedio, num):
 # Elección del punto inicial, final e intermedios
 st.title('Ruta Óptima con Q-Learning')
 
-# Agregar una imagen desde una URL
-st.subheader('Imagen desde URL')
-url_imagen = st.text_input('https://raw.githubusercontent.com/DanielVerduzco6/streamlit-example/master/grafoCut.png')
-if url_imagen:
-    st.image(url_imagen, caption='https://raw.githubusercontent.com/DanielVerduzco6/streamlit-example/master/grafoCut.png', use_column_width=True)
-
 estado_inicio_letra = st.sidebar.selectbox("Punto de Inicio", list(de_de_estados.keys()))
 estado_final_letra = st.sidebar.selectbox("Punto Final", list(de_de_estados.keys()))
 
