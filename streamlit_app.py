@@ -67,18 +67,6 @@ def recompensas(estado_final, estado_intermedio, num):
 
 # Elección del punto inicial, final e intermedios
 
-st.set_page_config(layout="wide", page_title="Ruta Óptima con Q-Learning", page_icon=None, initial_sidebar_state="collapsed")
-st.markdown(
-"""
-<style>
-    body {
-        background-color: #ffffff !important;
-    }
-</style>
-""",
-unsafe_allow_html=True
-)
-
 st.title('Ruta Óptima con Q-Learning')
 
 st.subheader('Equipo')
