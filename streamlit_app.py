@@ -69,18 +69,19 @@ def recompensas(estado_final, estado_intermedio, num):
 
 st.title('Ruta Óptima con Q-Learning')
 
-st.subheader('Equipo')
-st.write('Hector Eduardo Amaya Gonzalez')
-st.write('Bernabe Fierros Carrillo')
-st.write('Daniel Alejandro Verduzco Valencia')
+st.sidebar.title('Configuración')
 
-st.subheader('Problema')
-st.write('Un proveedor de productos automotrices desea surtir de inventario a sus clientes, los clientes a los que proveerá son 20 y cada uno esta en un municipio diferente, por lo que necesita realizar 20 paradas para realizar los pedidos. El proveedor desea ir de un punto a otro recorriendo la menor distancia entre ellos.')
+st.sidebar.subheader('Equipo')
+st.sidebar.write('Hector Eduardo Amaya Gonzalez')
+st.sidebar.write('Bernabe Fierros Carrillo')
+st.sidebar.write('Daniel Alejandro Verduzco Valencia')
 
-# Mostrar imagen
-st.subheader('Rutas')
+st.sidebar.subheader('Problema')
+st.sidebar.write('Un proveedor de productos automotrices desea surtir de inventario a sus clientes, los clientes a los que proveerá son 20 y cada uno esta en un municipio diferente, por lo que necesita realizar 20 paradas para realizar los pedidos. El proveedor desea ir de un punto a otro recorriendo la menor distancia entre ellos.')
+
+st.sidebar.subheader('Rutas')
 imagen_predeterminada = "https://raw.githubusercontent.com/DanielVerduzco6/streamlit-example/master/grafoCut.png"  # Reemplaza con la ruta de tu imagen
-st.image(imagen_predeterminada, caption='Grafo', use_column_width=True)
+st.sidebar.image(imagen_predeterminada, caption='Grafo')
 
 estado_inicio_letra = st.sidebar.selectbox("Punto de Inicio", list(de_de_estados.keys()))
 estado_final_letra = st.sidebar.selectbox("Punto Final", list(de_de_estados.keys()))
