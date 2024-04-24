@@ -3,66 +3,75 @@ import numpy as np
 from scipy import stats
 import matplotlib.pyplot as plt
 
-# Generar datos de salarios anuales simulados
+# Generate sample data
 np.random.seed(1783)
-salarios = np.random.normal(loc=50000, scale=15000, size=250)
-salarios = np.round(salarios, -3)
-salarios = np.abs(salarios)
+salaries = np.random.normal(loc=50000, scale=15000, size=250)
+salaries = np.round(salaries, -3)
+salaries = np.abs(salaries)
 
-# Calcular estadísticas descriptivas
-media_salarios = np.mean(salarios)
-mediana_salarios = np.median(salarios)
-moda_salarios = stats.mode(salarios)
-varianza_salarios = np.var(salarios)
-desviacion_estandar_salarios = np.std(salarios)
+# Calculate descriptive statistics
+mean_salaries = np.mean(salaries)
+median_salaries = np.median(salaries)
+mode_salaries = stats.mode(salaries)
+variance_salaries = np.var(salaries)
+standard_deviation_salaries = np.std(salaries)
 
-# Crear gráficos
-fig_hist = plt.figure(figsize=(15, 6))
-plt.hist(salarios, bins=15, color='g', edgecolor='black', alpha=0.7)
-plt.axvline(media_salarios, color='r', linestyle='dashed', linewidth=1.5, label='Media')
-plt.axvline(mediana_salarios, color='b', linestyle='dashed', linewidth=1.5, label='Mediana')
+# Display descriptive statistics
+st.title("Análisis de Salarios Anuales")
+st.write("Media de los salarios:", mean_salaries)
+st.write("Mediana de los salarios:", median_salaries)
+st.write("Moda de los salarios:", mode_salaries.mode)
+st.write("Varianza de los salarios:", variance_salaries)
+st.write("Desviación estándar de los salarios:", standard_deviation_salaries)
+
+# Histogram
+st.figure(figsize=(15, 6))
+plt.hist(salaries, bins=15, color='g', edgecolor='black', alpha=0.7)
+plt.axvline(mean_salaries, color='r', linestyle='dashed', linewidth=1.5, label='Media')
+plt.axvline(median_salaries, color='b', linestyle='dashed', linewidth=1.5, label='Mediana')
 plt.xlabel('Salarios')
 plt.ylabel('Frecuencia')
 plt.title('Distribución de Salarios Anuales')
 plt.legend()
 plt.grid(True)
+st.pyplot()
 
-fig_box = plt.figure(figsize=(8, 6))
-plt.boxplot(salarios, vert=False)
+# Box plot
+st.figure(figsize=(8, 6))
+plt.boxplot(salaries, vert=False)
 plt.xlabel('Salarios')
 plt.title('Diagrama de Caja de Salarios')
-plt.grid(True)
+plt.grid()
+st.pyplot()
 
-fig_scatter = plt.figure(figsize=(10, 6))
-plt.plot(salarios, 'o', label='Salarios') 
-plt.axhline(media_salarios, color='r', linestyle='-', label=f'Media: {media_salarios:.2f}')
-plt.axhline(media_salarios + desviacion_estandar_salarios, color='g', linestyle='--', label=f'+1 Desv. Est.: {media_salarios + desviacion_estandar_salarios:.2f}')
-plt.axhline(media_salarios - desviacion_estandar_salarios, color='g', linestyle='--', label=f'-1 Desv. Est.: {media_salarios - desviacion_estandar_salarios:.2f}')
+# Scatter plot with mean and standard deviation lines
+mean = mean_salaries
+standard_deviation = standard_deviation_salaries
+
+st.figure(figsize=(10, 6))
+plt.plot(salaries, 'o', label='Salarios')
+plt.axhline(mean, color='r', linestyle='-', label=f'Media: {mean:.2f}')
+plt.axhline(mean + standard_deviation, color='g', linestyle='--', label=f'+1 Desv. Est.: {mean + standard_deviation:.2f}')
+plt.axhline(mean - standard_deviation, color='g', linestyle='--', label=f'-1 Desv. Est.: {mean - standard_deviation:.2f}')
 plt.title('Dispersión de los Salarios')
 plt.xlabel('Índice de empleado')
 plt.ylabel('Salarios')
 plt.legend()
 plt.grid(True)
+st.pyplot()
 
-# Mostrar gráficos
-st.title('Informe sobre Análisis de Salarios Anuales')
-st.write('En este informe, se presenta un análisis estadístico de los salarios anuales de los empleados.')
+# Discussion
+st.markdown("## Discusión")
 
-st.header('Resultados y Análisis')
-st.write('**Media de los salarios:**', media_salarios)
-st.write('**Mediana de los salarios:**', mediana_salarios)
-st.write('**Moda de los salarios:**', moda_salarios.mode[0])
-st.write('La moda aparece', moda_salarios.count[0], 'veces')
-st.write('**Varianza de los salarios:**', varianza_salarios)
-st.write('**Desviación estándar de los salarios:**', desviacion_estandar_salarios)
+# Interpretation of mean and median
+st.markdown("La media de los salarios es de **49,604.0**, lo que nos dice el salario promedio de los empleados.")
+st.markdown("La mediana de los salarios es de **50,000.0**, lo que nos dice el salario central cuando los salarios se ordenan de menor a mayor.")
+st.markdown("Ya que la media y la mediana son cercanas en este caso, sugiere que la distribución de los salarios es relativamente **simétrica** y no está sesgada hacia valores extremos.")
+st.markdown("Esto nos dice que la mayoría de los salarios se encuentran al rededor de estos valores centrales.")
 
-st.header('Gráficos')
-st.pyplot(fig_hist)
-st.pyplot(fig_box)
-st.pyplot(fig_scatter)
+# Interpretation of mode
+st.markdown("La moda de los salarios es de **52,000.0** y aparece **10** veces en los datos.")
+st.markdown("Esto nos dice que **52,000.0** es el salario más común entre los empleados.")
 
-st.header('Discusión')
-st.write('La media de los salarios indica el valor promedio de compensación en la empresa, mientras que la mediana representa el salario central, siendo menos sensible a valores extremos. La moda señala el salario más común entre los empleados. La varianza y la desviación estándar reflejan la dispersión de los salarios alrededor de la media, indicando si los salarios están agrupados cerca de la media o dispersos.')
-
-st.header('Implicaciones y Recomendaciones')
-st.write('En base a las estadísticas obtenidas y los gráficos analizados, los salarios no son muy equitativos entre el personal de la empresa, por lo que se sugiere revisar la equidad salarial dentro de la empresa para garantizar una distribución justa de compensaciones.')
+# Interpretation of variance and standard deviation
+st.markdown("La varianza de los salarios es de **278,327,184.0** y la desviación estándar es de aproximadamente **16,683.14**. Una varianza alta y una desviación estándar considerable indican que
