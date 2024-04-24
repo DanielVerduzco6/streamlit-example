@@ -134,17 +134,17 @@ if actividad == "Actividad 1":
         plt.legend()
         plt.grid(True)
     """)
-    # Crear la gráfica
-    st.pyplot(plt.figure(figsize=(15, 6)))
-    # Histograma de los salarios
-    plt.hist(salarios, bins=15, color='g', edgecolor='black', alpha=0.7)
-    plt.axvline(media_salarios, color='r', linestyle='dashed', linewidth=1.5, label='Media')
-    plt.axvline(mediana_salarios, color='b', linestyle='dashed', linewidth=1.5, label='Mediana')
-    plt.xlabel('Salarios')
-    plt.ylabel('Frecuencia')
-    plt.title('Distribución de Salarios Anuales')
-    plt.legend()
-    plt.grid(True)
+    # Crear la gráfica dentro de un contexto de Streamlit
+    fig, ax = plt.subplots(figsize=(15, 6))
+    ax.hist(salarios, bins=15, color='g', edgecolor='black', alpha=0.7)
+    ax.axvline(media_salarios, color='r', linestyle='dashed', linewidth=1.5, label='Media')
+    ax.axvline(mediana_salarios, color='b', linestyle='dashed', linewidth=1.5, label='Mediana')
+    ax.set_xlabel('Salarios')
+    ax.set_ylabel('Frecuencia')
+    ax.set_title('Distribución de Salarios Anuales')
+    ax.legend()
+    ax.grid(True)
+    
     # Mostrar la gráfica en Streamlit
     st.pyplot(fig)
 #########################################################3
