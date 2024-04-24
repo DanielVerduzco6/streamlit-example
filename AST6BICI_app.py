@@ -1,3 +1,5 @@
+import streamlit as st
+
 # Portada principal
 st.write("# **Análisis de series temporales**")
 st.write("## **Actividad: Estadísticas descriptivas**")
