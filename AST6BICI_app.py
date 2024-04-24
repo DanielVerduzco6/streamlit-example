@@ -4,6 +4,7 @@ import numpy as np
 from scipy import stats
 import matplotlib.pyplot as plt
 from statsmodels.tsa.seasonal import seasonal_decompose
+from sklearn.ensemble import IsolationForest
 
 # Portada principal
 st.write("# **Análisis de series temporales**")
@@ -483,9 +484,7 @@ elif actividad == "Actividad 2":
             
     """)
         
-    
-    
-    
+     
 
 
 
@@ -501,6 +500,133 @@ elif actividad == "Actividad 2":
 elif actividad == "Actividad 3":
     st.write('### Código 3: Tarea de Anomalías')
     # Aquí va el código 3
+    st.markdown("""
+    <div align="center">
+        
+    # **Análisis de series temporales**
+    
+    ## **Actividad: Tarea de anomalias**
+    
+    **Estudiante: Verduzco Valencia Daniel Alejandro**
+    
+    **Profesor: Mata Lopez Walter Alexander**
+    
+    **6.-B**
+    
+    **Ingeniería en Computación Inteligente**  
+    **Universidad de Colima**  
+    **FIME**
+    
+    **19/04/2024**
+    
+    ![Logo de la Universidad de Colima](https://www.ucol.mx/content/cms/41/image/escudos.png)
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Problema
+    st.write("## Problema para la detección de anomalías en sensores de temperatura en una planta de manufactura")
+    # Instrucciones
+    st.write("#### Instrucciones")
+    st.write("En una planta de manufactura, se utilizan sensores para monitorear la temperatura en diferentes partes de la línea de producción. Estos sensores registran lecturas de temperatura cada hora durante un periodo de varios meses. Tu tarea es analizar estos datos para identificar posibles anomalías en las lecturas de temperatura que puedan indicar problemas en el proceso de fabricación o fallos en los equipos.")
+    st.write("#### Parte 1: Generación de Datos:")
+    st.write("Utiliza un programa en Python para generar datos simulados que representen las lecturas de temperatura de los sensores durante varios meses. Los datos deben incluir una variedad de lecturas normales, así como algunas lecturas anómalas que simulen problemas en el proceso de fabricación o fallos en los equipos.")
+    st.write("#### Parte 2: Análisis de Datos")
+    st.write("Una vez que hayas generado los datos, realiza un análisis para identificar posibles anomalías en las lecturas de temperatura. Algunas preguntas que podrías explorar incluyen:")
+    st.write("- ¿Existen lecturas de temperatura que se desvíen significativamente del rango esperado para esa área de la planta?")
+    st.write("- ¿Hay algún patrón o tendencia en las lecturas anómalas?")
+    st.write("- ¿Qué características tienen las lecturas anómalas en comparación con las lecturas normales?")
+    st.write("#### Parte 3: Informe de Resultados")
+    st.write("Escribe un informe que resuma tus hallazgos. Incluye gráficos o visualizaciones que ayuden a identificar las anomalías en los datos de temperatura. Además, discute cualquier insight o conclusión que hayas obtenido del análisis de los datos y cómo podrían utilizarse para mejorar el mantenimiento preventivo o la eficiencia en la planta de manufactura.")
+
+    st.code("""
+            import pandas as pd
+            import numpy as np
+            import matplotlib.pyplot as plt
+            from sklearn.ensemble import IsolationForest
+            
+            # Generar datos
+            np.random.seed(0)
+            horas = pd.date_range(start='2024-01-01', end='2024-04-01', freq='H')
+            temperaturas = np.random.normal(loc=20, scale=2, size=len(horas)) # Lecturas de temperatura normales
+            
+            # Introducir anomalías
+            indices_anomalos = np.random.choice(range(len(horas)), size=50, replace=False)
+            temperaturas[indices_anomalos] += np.random.normal(loc=10, scale=2, size=len(indices_anomalos)) # Hacer las anomalías significativamente más grandes
+            
+            # Crear DataFrame
+            df_temperaturas = pd.DataFrame({'Fecha': horas, 'Temperaturas': temperaturas})
+            
+            # Utilizar Isolation Forest para detectar anomalías
+            iso_forest = IsolationForest(contamination=0.02) # Suponemos que aproximadamente el 2% de los datos son anomalías
+            anomalies = iso_forest.fit_predict(df_temperaturas[['Temperaturas']])
+            df_temperaturas['Anomaly'] = anomalies == -1
+            
+            # Gráfica de temperaturas y anomalías
+            plt.figure(figsize=(15, 6))
+            plt.plot(df_temperaturas['Fecha'], df_temperaturas['Temperaturas'], label='Temperaturas')
+            plt.scatter(df_temperaturas.loc[df_temperaturas['Anomaly'], 'Fecha'], df_temperaturas.loc[df_temperaturas['Anomaly'], 'Temperaturas'], color='red', label='Anomalía', marker='x', s=100) # Marcar anomalías con una X roja
+            plt.xlabel('Fecha')
+            plt.ylabel('Temperatura')
+            plt.title('Lecturas de Temperatura con Anomalía Detectada')
+            plt.legend()
+            
+            plt.grid(True)
+            plt.show()
+    """)
+
+    # Generar datos
+    np.random.seed(0)
+    horas = pd.date_range(start='2024-01-01', end='2024-04-01', freq='H')
+    temperaturas = np.random.normal(loc=20, scale=2, size=len(horas))  # Lecturas de temperatura normales
+    
+    # Introducir anomalías
+    indices_anomalos = np.random.choice(range(len(horas)), size=50, replace=False)
+    temperaturas[indices_anomalos] += np.random.normal(loc=10, scale=2, size=len(indices_anomalos))  # Hacer las anomalías significativamente más grandes
+    
+    # Crear DataFrame
+    df_temperaturas = pd.DataFrame({'Fecha': horas, 'Temperaturas': temperaturas})
+    
+    # Utilizar Isolation Forest para detectar anomalías
+    iso_forest = IsolationForest(contamination=0.02)  # Suponemos que aproximadamente el 2% de los datos son anomalías
+    anomalies = iso_forest.fit_predict(df_temperaturas[['Temperaturas']])
+    df_temperaturas['Anomaly'] = anomalies == -1
+    
+    # Gráfica de temperaturas y anomalías
+    st.write("### Lecturas de Temperatura con Anomalía Detectada")
+    fig, ax = plt.subplots(figsize=(15, 6))
+    ax.plot(df_temperaturas['Fecha'], df_temperaturas['Temperaturas'], label='Temperaturas')
+    ax.scatter(df_temperaturas.loc[df_temperaturas['Anomaly'], 'Fecha'], df_temperaturas.loc[df_temperaturas['Anomaly'], 'Temperaturas'], color='red', label='Anomalía', marker='x', s=100)  # Marcar anomalías con una X roja
+    ax.set_xlabel('Fecha')
+    ax.set_ylabel('Temperatura')
+    ax.set_title('Lecturas de Temperatura con Anomalía Detectada')
+    ax.legend()
+    
+    ax.grid(True)
+    st.pyplot(fig)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 elif actividad == "Actividad 4":
     st.write('### Código 4: Análisis de Estacionariedad de una Serie Temporal')
     # Aquí va el código 4
