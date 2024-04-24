@@ -36,23 +36,55 @@ if st.button('Parcial 1 y 2'):
     **12/04/2024**
     
     ![Logo de la Universidad de Colima](https://www.ucol.mx/content/cms/41/image/escudos.png)
-    """)
-    st.markdown("## Problema")
-    st.markdown("Contexto: Una empresa desea realizar un análisis estadístico de los salarios anuales de sus empleados. El propósito de este análisis es obtener una mejor comprensión de la distribución de los ingresos entre los empleados, lo que permitirá a la empresa tomar decisiones informadas respecto a la equidad salarial y la estructura de compensaciones.")
-    st.markdown("Objetivo: Como parte de un proyecto de análisis de datos, se te ha asignado la tarea de calcular las estadísticas descriptivas básicas de los salarios anuales en la empresa. Específicamente, deberás calcular la media, mediana, moda, varianza y desviación estándar de los salarios. Además, deberás interpretar estas estadísticas para discutir la equidad salarial y la dispersión de los salarios.")
-    st.markdown("## Instrucciones")
-    st.markdown("### 1. Generar Datos")
-    st.markdown("Utiliza el siguiente código en Python para generar una muestra aleatoria de salarios anuales. Esta muestra simulará los salarios anuales de los empleados de la empresa.")
+    
+    ## Problema
+    
+    Contexto: Una empresa desea realizar un análisis estadístico de los salarios anuales de sus empleados. El propósito de este análisis es obtener una mejor comprensión de la distribución de los ingresos entre los empleados, lo que permitirá a la empresa tomar decisiones informadas respecto a la equidad salarial y la estructura de compensaciones.
+    
+    Objetivo: Como parte de un proyecto de análisis de datos, se te ha asignado la tarea de calcular las estadísticas descriptivas básicas de los salarios anuales en la empresa. Específicamente, deberás calcular la media, mediana, moda, varianza y desviación estándar de los salarios. Además, deberás interpretar estas estadísticas para discutir la equidad salarial y la dispersión de los salarios.
+    
+    ## Instrucciones
+    
+    ### 1. Generar Datos
+    
+    Utiliza el siguiente código en Python para generar una muestra aleatoria de salarios anuales. Esta muestra simulará los salarios anuales de los empleados de la empresa.
+    
+    ```python
+    import numpy as np
+    from scipy import stats
+    import matplotlib.pyplot as plt
+    
+    # Configurar la semilla del generador aleatorio para reproducibilidad
+    np.random.seed(1783)
     
     # Generar datos de salarios anuales (simulados)
-    np.random.seed(1783)
     salarios = np.random.normal(loc=50000, scale=15000, size=250)
     salarios = np.round(salarios, -3)
     salarios = np.abs(salarios)
+    ```
     
-    st.markdown("### 2. Calcular Estadísticas Descriptivas")
-    st.markdown("Calcula la media, mediana, moda, varianza y desviación estándar de los salarios generados. Puedes usar las librerías numpy para media, mediana, varianza y desviación estándar, y scipy.stats o statistics para la moda.")
+    ### 2. Calcular Estadísticas Descriptivas
     
+    Calcula la media, mediana, moda, varianza y desviación estándar de los salarios generados. Puedes usar las librerías numpy para media, mediana, varianza y desviación estándar, y scipy.stats o statistics para la moda.
+    
+    ```python
+    # media, mediana, moda, varianza y desviación estándar de los salarios
+    media_salarios = np.mean(salarios)
+    mediana_salarios = np.median(salarios)
+    moda_salarios = stats.mode(salarios)
+    varianza_salarios = np.var(salarios)
+    desviacion_estandar_salarios = np.std(salarios)
+    
+    print("Media de los salarios:", media_salarios)
+    print("Mediana de los salarios:", mediana_salarios)
+    print("Moda de los salarios:", moda_salarios.mode)
+    print("La moda aparece", moda_salarios.count, "veces")
+    print("Varianza de los salarios:", varianza_salarios)
+    print("Desviación estándar de los salarios:", desviacion_estandar_salarios)
+    ```
+    
+    ### Gráficas
+    """)
     # media, mediana, moda, varianza y desviación estándar de los salarios
     media_salarios = np.mean(salarios)
     mediana_salarios = np.median(salarios)
@@ -67,7 +99,6 @@ if st.button('Parcial 1 y 2'):
     st.write("Varianza de los salarios:", varianza_salarios)
     st.write("Desviación estándar de los salarios:", desviacion_estandar_salarios)
     
-    st.markdown("### Gráficas")
     # Histograma
     fig_hist, ax_hist = plt.subplots(figsize=(10, 6))
     ax_hist.hist(salarios, bins=15, color='g', edgecolor='black', alpha=0.7)
