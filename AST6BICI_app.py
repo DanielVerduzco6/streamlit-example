@@ -1,28 +1,17 @@
 import streamlit as st
 
 # Portada principal
-    st.write('### Código 1: Estadísticas descriptivas')
-    # Código 1: Estadísticas descriptivas
-    st.markdown("""
-    # **Análisis de series temporales**
-    
-    ## **Actividad: Estadísticas descriptivas**
-    
-    **Estudiante: Verduzco Valencia Daniel Alejandro**
-    
-    **Profesor: Mata Lopez Walter Alexander**
-    
-    **6.-B**
-    
-    **Ingeniería en Computación Inteligente**  
-    **Universidad de Colima**  
-    **FIME**
-    
-    **12/04/2024**
-    
-    ![Logo de la Universidad de Colima](https://www.ucol.mx/content/cms/41/image/escudos.png)
-    """)
-    st.markdown("## Problema")
+# Portada principal
+st.write("# **Análisis de series temporales**")
+st.write("## **Actividad: Estadísticas descriptivas**")
+st.write("**Estudiante: Verduzco Valencia Daniel Alejandro**")
+st.write("**Profesor: Mata Lopez Walter Alexander**")
+st.write("**6.-B**")
+st.write("**Ingeniería en Computación Inteligente**")
+st.write("**Universidad de Colima**")
+st.write("**FIME**")
+st.write("**12/04/2024**")
+st.image("https://www.ucol.mx/content/cms/41/image/escudos.png", use_column_width=True)
 
 # Botones para acceder a los códigos
 if st.button('Actividad 1'):
