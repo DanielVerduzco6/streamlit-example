@@ -120,7 +120,6 @@ if actividad == "Actividad 1":
     st.write("- Varianza de los salarios:", varianza_salarios)
     st.write("- Desviación estándar de los salarios:", desviacion_estandar_salarios)
 
-
     st.code("""
         # Crear la gráfica
         st.write("### 5. Gráfico de la distribución de Salarios Anuales:")
@@ -136,7 +135,6 @@ if actividad == "Actividad 1":
         plt.grid(True)
     """)
     # Crear la gráfica
-    st.write("### 5. Gráfico de la distribución de Salarios Anuales:")
     st.pyplot(plt.figure(figsize=(15, 6)))
     # Histograma de los salarios
     plt.hist(salarios, bins=15, color='g', edgecolor='black', alpha=0.7)
@@ -147,6 +145,7 @@ if actividad == "Actividad 1":
     plt.title('Distribución de Salarios Anuales')
     plt.legend()
     plt.grid(True)
+
 
     # 3. Interpretar los Resultados
     st.write("### 3. Interpretar los Resultados:")
@@ -166,12 +165,12 @@ if actividad == "Actividad 1":
     """)
 
     # Diagrama de Caja de Salarios
-    plt.figure(figsize=(8, 6))
+    st.pyplot(plt.figure(figsize=(8, 6)))
     plt.boxplot(salarios, vert=False)
     plt.xlabel('Salarios')
     plt.title('Diagrama de Caja de Salarios')
     plt.grid()
-    plt.show()
+
 
     st.code("""
         # Gráfico de Dispersión con Líneas de Media y Desviación Estándar
@@ -192,10 +191,7 @@ if actividad == "Actividad 1":
     """)
 
     # Gráfico de Dispersión con Líneas de Media y Desviación Estándar
-    media = 49604.0
-    desviacion_estandar = 16683.14071150873
-    
-    plt.figure(figsize=(10, 6))
+    st.pyplot(plt.figure(figsize=(10, 6)))
     plt.plot(salarios, 'o', label='Salarios') # Puntos de los salarios
     plt.axhline(media, color='r', linestyle='-', label=f'Media: {media:.2f}') # Línea de la media
     plt.axhline(media + desviacion_estandar, color='g', linestyle='--', label=f'+1 Desv. Est.: {media + desviacion_estandar:.2f}')
@@ -205,7 +201,6 @@ if actividad == "Actividad 1":
     plt.ylabel('Salarios')
     plt.legend()
     plt.grid(True)
-    plt.show()
 
     # Análisis de las estadísticas descriptivas
     st.write("**Análisis de las estadísticas descriptivas:**")
