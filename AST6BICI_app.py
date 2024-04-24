@@ -3,136 +3,87 @@ import numpy as np
 from scipy import stats
 import matplotlib.pyplot as plt
 
-# Portada principal
-st.title('Análisis de series temporales')
-st.header('Compendio de tareas y ejercicios')
-st.write("Estudiante: Verduzco Valencia Daniel Alejandro")
-st.write("Profesor: Mata López Walter Alexander")
-st.write("6-B")
-st.write("Ingeniería en Computación Inteligente")
-st.write("Universidad de Colima")
-st.write("FIME")
-st.write("2024")
+# Configurar la semilla del generador aleatorio para reproducibilidad
+np.random.seed(1783)
 
-# Botones para acceder a los códigos
-if st.button('Parcial 1 y 2'):
-    st.write('### Código 1: Estadísticas descriptivas')
-    # Código 1: Estadísticas descriptivas
-    st.markdown("""
-    # **Análisis de series temporales**
-    
-    ## **Actividad: Estadísticas descriptivas**
-    
-    **Estudiante: Verduzco Valencia Daniel Alejandro**
-    
-    **Profesor: Mata Lopez Walter Alexander**
-    
-    **6.-B**
-    
-    **Ingeniería en Computación Inteligente**  
-    **Universidad de Colima**  
-    **FIME**
-    
-    **12/04/2024**
-    
-    ![Logo de la Universidad de Colima](https://www.ucol.mx/content/cms/41/image/escudos.png)
-    
-    ## Problema
-    
-    Contexto: Una empresa desea realizar un análisis estadístico de los salarios anuales de sus empleados. El propósito de este análisis es obtener una mejor comprensión de la distribución de los ingresos entre los empleados, lo que permitirá a la empresa tomar decisiones informadas respecto a la equidad salarial y la estructura de compensaciones.
-    
-    Objetivo: Como parte de un proyecto de análisis de datos, se te ha asignado la tarea de calcular las estadísticas descriptivas básicas de los salarios anuales en la empresa. Específicamente, deberás calcular la media, mediana, moda, varianza y desviación estándar de los salarios. Además, deberás interpretar estas estadísticas para discutir la equidad salarial y la dispersión de los salarios.
-    
-    ## Instrucciones
-    
-    ### 1. Generar Datos
-    
-    Utiliza el siguiente código en Python para generar una muestra aleatoria de salarios anuales. Esta muestra simulará los salarios anuales de los empleados de la empresa.
-    
-    ```python
-    import numpy as np
-    from scipy import stats
-    import matplotlib.pyplot as plt
-    
-    # Configurar la semilla del generador aleatorio para reproducibilidad
-    np.random.seed(1783)
-    
-    # Generar datos de salarios anuales (simulados)
-    salarios = np.random.normal(loc=50000, scale=15000, size=250)
-    salarios = np.round(salarios, -3)
-    salarios = np.abs(salarios)
-    ```
-    
-    ### 2. Calcular Estadísticas Descriptivas
-    
-    Calcula la media, mediana, moda, varianza y desviación estándar de los salarios generados. Puedes usar las librerías numpy para media, mediana, varianza y desviación estándar, y scipy.stats o statistics para la moda.
-    
-    ```python
-    # media, mediana, moda, varianza y desviación estándar de los salarios
-    media_salarios = np.mean(salarios)
-    mediana_salarios = np.median(salarios)
-    moda_salarios = stats.mode(salarios)
-    varianza_salarios = np.var(salarios)
-    desviacion_estandar_salarios = np.std(salarios)
-    
-    print("Media de los salarios:", media_salarios)
-    print("Mediana de los salarios:", mediana_salarios)
-    print("Moda de los salarios:", moda_salarios.mode)
-    print("La moda aparece", moda_salarios.count, "veces")
-    print("Varianza de los salarios:", varianza_salarios)
-    print("Desviación estándar de los salarios:", desviacion_estandar_salarios)
-    ```
-    
-    ### Gráficas
-    """)
-    # media, mediana, moda, varianza y desviación estándar de los salarios
-    media_salarios = np.mean(salarios)
-    mediana_salarios = np.median(salarios)
-    moda_salarios = stats.mode(salarios)
-    varianza_salarios = np.var(salarios)
-    desviacion_estandar_salarios = np.std(salarios)
-    
-    st.write("Media de los salarios:", media_salarios)
-    st.write("Mediana de los salarios:", mediana_salarios)
-    st.write("Moda de los salarios:", moda_salarios.mode)
-    st.write("La moda aparece", moda_salarios.count, "veces")
-    st.write("Varianza de los salarios:", varianza_salarios)
-    st.write("Desviación estándar de los salarios:", desviacion_estandar_salarios)
-    
-    # Histograma
-    fig_hist, ax_hist = plt.subplots(figsize=(10, 6))
-    ax_hist.hist(salarios, bins=15, color='g', edgecolor='black', alpha=0.7)
-    ax_hist.axvline(media_salarios, color='r', linestyle='dashed', linewidth=1.5, label='Media')
-    ax_hist.axvline(mediana_salarios, color='b', linestyle='dashed', linewidth=1.5, label='Mediana')
-    ax_hist.set_xlabel('Salarios')
-    ax_hist.set_ylabel('Frecuencia')
-    ax_hist.set_title('Distribución de Salarios Anuales')
-    ax_hist.legend()
-    ax_hist.grid(True)
-    st.pyplot(fig_hist)
-    
-    # Diagrama de Caja de Salarios
-    fig_box, ax_box = plt.subplots(figsize=(8, 6))
-    ax_box.boxplot(salarios, vert=False)
-    ax_box.set_xlabel('Salarios')
-    ax_box.set_title('Diagrama de Caja de Salarios')
-    ax_box.grid()
-    st.pyplot(fig_box)
-    
-    # Gráfico de Dispersión con Líneas de Media y Desviación Estándar
-    media = 49604.0
-    desviacion_estandar = 16683.14071150873
-    fig_disp, ax_disp = plt.subplots(figsize=(10, 6))
-    ax_disp.plot(salarios, 'o', label='Salarios') # Puntos de los salarios
-    ax_disp.axhline(media, color='r', linestyle='-', label=f'Media: {media:.2f}') # Línea de la media
-    ax_disp.axhline(media + desviacion_estandar, color='g', linestyle='--', label=f'+1 Desv. Est.: {media + desviacion_estandar:.2f}')
-    ax_disp.axhline(media - desviacion_estandar, color='g', linestyle='--', label=f'-1 Desv. Est.: {media - desviacion_estandar:.2f}')
-    ax_disp.set_title('Dispersión de los Salarios')
-    ax_disp.set_xlabel('Índice de empleado')
-    ax_disp.set_ylabel('Salarios')
-    ax_disp.legend()
-    ax_disp.grid(True)
-    st.pyplot(fig_disp)
+# Generar datos de salarios anuales (simulados)
+salarios = np.random.normal(loc=50000, scale=15000, size=250)
+salarios = np.round(salarios, -3)
 
-elif st.button('Parcial 3'):
-    pass  # Agrega el código del parcial 3 aquí
+# Asegurarse de que todos los salarios sean positivos
+salarios = np.abs(salarios)
+
+# Calcular estadísticas descriptivas
+media_salarios = np.mean(salarios)
+mediana_salarios = np.median(salarios)
+moda_salarios = stats.mode(salarios)
+varianza_salarios = np.var(salarios)
+desviacion_estandar_salarios = np.std(salarios)
+
+# Crear la aplicación Streamlit
+st.title("Análisis de Series Temporales: Estadísticas Descriptivas")
+st.markdown("---")
+st.write("### Problema")
+st.markdown("Una empresa desea realizar un análisis estadístico de los salarios anuales de sus empleados. "
+            "El propósito de este análisis es obtener una mejor comprensión de la distribución de los ingresos "
+            "entre los empleados, lo que permitirá a la empresa tomar decisiones informadas respecto a la equidad "
+            "salarial y la estructura de compensaciones.")
+st.markdown("---")
+
+# Mostrar estadísticas descriptivas
+st.write("### Estadísticas Descriptivas")
+st.write(f"Media de los salarios: {media_salarios}")
+st.write(f"Mediana de los salarios: {mediana_salarios}")
+st.write(f"Moda de los salarios: {moda_salarios.mode}, aparece {moda_salarios.count} veces")
+st.write(f"Varianza de los salarios: {varianza_salarios}")
+st.write(f"Desviación estándar de los salarios: {desviacion_estandar_salarios}")
+
+# Crear y mostrar histograma
+st.write("### Histograma de Salarios Anuales")
+plt.figure(figsize=(10, 6))
+plt.hist(salarios, bins=15, color='g', edgecolor='black', alpha=0.7)
+plt.axvline(media_salarios, color='r', linestyle='dashed', linewidth=1.5, label='Media')
+plt.axvline(mediana_salarios, color='b', linestyle='dashed', linewidth=1.5, label='Mediana')
+plt.xlabel('Salarios')
+plt.ylabel('Frecuencia')
+plt.title('Distribución de Salarios Anuales')
+plt.legend()
+plt.grid(True)
+st.pyplot(plt)
+
+# Mostrar gráfico de dispersión con líneas de media y desviación estándar
+st.write("### Gráfico de Dispersión con Líneas de Media y Desviación Estándar")
+plt.figure(figsize=(10, 6))
+plt.plot(salarios, 'o', label='Salarios') # Puntos de los salarios
+plt.axhline(media_salarios, color='r', linestyle='-', label=f'Media: {media_salarios:.2f}') # Línea de la media
+plt.axhline(media_salarios + desviacion_estandar_salarios, color='g', linestyle='--', label=f'+1 Desv. Est.: {media_salarios + desviacion_estandar_salarios:.2f}')
+plt.axhline(media_salarios - desviacion_estandar_salarios, color='g', linestyle='--', label=f'-1 Desv. Est.: {media_salarios - desviacion_estandar_salarios:.2f}')
+plt.title('Dispersión de los Salarios')
+plt.xlabel('Índice de empleado')
+plt.ylabel('Salarios')
+plt.legend()
+plt.grid(True)
+st.pyplot(plt)
+
+# Mostrar diagrama de caja
+st.write("### Diagrama de Caja de Salarios")
+plt.figure(figsize=(8, 6))
+plt.boxplot(salarios, vert=False)
+plt.xlabel('Salarios')
+plt.title('Diagrama de Caja de Salarios')
+plt.grid()
+st.pyplot(plt)
+
+# Mostrar análisis de las estadísticas descriptivas
+st.write("### Análisis de las Estadísticas Descriptivas")
+st.markdown("1. **Media y Mediana:**\n"
+            "    - La media y la mediana son cercanas, lo que sugiere una distribución relativamente simétrica de los salarios.\n"
+            "2. **Moda:**\n"
+            "    - La moda indica el salario más común entre los empleados.\n"
+            "3. **Varianza y Desviación Estándar:**\n"
+            "    - La alta varianza y desviación estándar sugieren una dispersión considerable de los salarios alrededor de la media.")
+
+# Mostrar informe y recomendaciones
+st.write("### Informe y Recomendaciones")
+st.markdown("En base a las estadísticas obtenidas y los gráficos analizados, los salarios en la empresa no son muy equitativos. "
+            "Se recomienda revisar la equidad salarial dentro de la empresa para garantizar una distribución justa de compensaciones.")
