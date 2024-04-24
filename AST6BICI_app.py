@@ -84,7 +84,7 @@ if actividad == "Actividad 1":
     
     # Mostrar los salarios generados
     st.write("## Datos de salarios anuales generados:")
-    st.table(salarios)
+    st.write(list(salarios))
 
 
 
