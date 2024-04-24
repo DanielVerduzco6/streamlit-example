@@ -90,9 +90,7 @@ if actividad == "Actividad 1":
     st.write("### 2. Calcular Estadísticas Descriptivas:")
     st.write("- Calcula la media, mediana, moda, varianza y desviación estándar de los salarios generados.")
     st.write("- Puedes usar las librerías numpy para media, mediana, varianza y desviación estándar, y scipy.stats o statistics para la moda.")
-    
-    st.write("## Código para generar los datos de salarios anuales:")
-    st.code("""
+        st.code("""
         # media, mediana, moda, varianza y desviación estándar de los salarios
         media_salarios = np.mean(salarios)
         mediana_salarios = np.median(salarios)
