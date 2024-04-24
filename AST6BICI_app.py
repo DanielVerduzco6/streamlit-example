@@ -87,6 +87,40 @@ if actividad == "Actividad 1":
     st.write(list(salarios))
 
 
+    st.write("### 2. Calcular Estadísticas Descriptivas:")
+    st.write("- Calcula la media, mediana, moda, varianza y desviación estándar de los salarios generados.")
+    st.write("- Puedes usar las librerías numpy para media, mediana, varianza y desviación estándar, y scipy.stats o statistics para la moda.")
+    
+    st.write("## Código para generar los datos de salarios anuales:")
+    st.code("""
+        # media, mediana, moda, varianza y desviación estándar de los salarios
+        media_salarios = np.mean(salarios)
+        mediana_salarios = np.median(salarios)
+        moda_salarios = stats.mode(salarios)
+        varianza_salarios = np.var(salarios)
+        desviacion_estandar_salarios = np.std(salarios)
+        
+        print("Media de los salarios:", media_salarios)
+        print("Mediana de los salarios:", mediana_salarios)
+        print("Moda de los salarios:", moda_salarios.mode)
+        print("La moda aparece", moda_salarios.count, "veces")
+        print("Varianza de los salarios:", varianza_salarios)
+        print("Desviación estándar de los salarios:", desviacion_estandar_salarios)
+    """)
+    # media, mediana, moda, varianza y desviación estándar de los salarios
+    media_salarios = np.mean(salarios)
+    mediana_salarios = np.median(salarios)
+    moda_salarios = stats.mode(salarios)
+    varianza_salarios = np.var(salarios)
+    desviacion_estandar_salarios = np.std(salarios)
+    
+    st.write("### 3. Resultados de las estadísticas descriptivas:")
+    st.write("- Media de los salarios:", media_salarios)
+    st.write("- Mediana de los salarios:", mediana_salarios)
+    st.write("- Moda de los salarios:", moda_salarios.mode)
+    st.write(f"- La moda aparece {moda_salarios.count} veces")
+    st.write("- Varianza de los salarios:", varianza_salarios)
+    st.write("- Desviación estándar de los salarios:", desviacion_estandar_salarios)
 
 
 
