@@ -262,6 +262,62 @@ if actividad == "Actividad 1":
 elif actividad == "Actividad 2":
     st.write('### Código 2: Tarea de patrones')
     # Aquí va el código 2
+
+    st.markdown("""
+    <div align="center">
+        
+    # **Análisis de series temporales**
+    
+    ## **Actividad: Tarea de patrones**
+    
+    **Estudiante: Verduzco Valencia Daniel Alejandro**
+    
+    **Profesor: Mata Lopez Walter Alexander**
+    
+    **6.-B**
+    
+    **Ingeniería en Computación Inteligente**  
+    **Universidad de Colima**  
+    **FIME**
+    
+    **12/04/2024**
+    
+    ![Logo de la Universidad de Colima](https://www.ucol.mx/content/cms/41/image/escudos.png)
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Problema
+    st.write("## Problema de identificación de patrones en datos de ventas mensuales")
+    # Instrucciones
+    st.write("#### Instrucciones")
+    st.write("En una empresa de venta al por menor, se ha recopilado un conjunto de datos que registra las ventas mensuales de varios productos durante un periodo de varios años. Tu tarea es analizar estos datos para identificar posibles patrones o tendencias en las ventas mensuales.")
+    st.write("#### Parte 1: Generación de Datos:")
+    st.write("Utiliza un programa en Python para generar datos simulados que representen las ventas mensuales de varios productos a lo largo de un período de tiempo. Los datos deben incluir al menos 3 productos diferentes y abarcar un periodo de al menos 3 años.")
+    st.write("#### Parte 2: Análisis de Datos")
+    st.write("Una vez que hayas generado los datos, realiza un análisis para identificar posibles patrones en las ventas mensuales. Algunas preguntas que podrías explorar incluyen:")
+    st.write("- ¿Hay algún patrón estacional en las ventas de ciertos productos?")
+    st.write("- ¿Se observa alguna tendencia de crecimiento o decrecimiento en las ventas a lo largo del tiempo?")
+    st.write("- ¿Existen meses específicos en los que las ventas tienden a ser más altas o más bajas?")
+    st.write("#### Parte 3: Informe de Resultados")
+    st.write("Escribe un informe que resuma tus hallazgos. Incluye gráficos o visualizaciones que ayuden a ilustrar los patrones identificados en los datos. Además, discute cualquier insight o conclusión que hayas obtenido del análisis de los datos.")
+    st.write("Entrega tu programa de Python (o libreta de Jupyter) junto con el informe de resultados. Asegúrate de incluir comentarios en tu código para explicar cada paso del proceso de análisis y cómo se generaron los datos.")
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
 elif actividad == "Actividad 3":
     st.write('### Código 3: Tarea de Anomalías')
     # Aquí va el código 3
