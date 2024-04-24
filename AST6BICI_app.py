@@ -57,7 +57,7 @@ desviacion_estandar_salarios = np.std(salarios)
 
 st.write("Media de los salarios:", media_salarios)
 st.write("Mediana de los salarios:", mediana_salarios)
-st.write("Moda de los salarios:", moda_salarios.mode[0])
+st.write("Moda de los salarios:", moda_salarios.mode[0]) 
 st.write("La moda aparece", moda_salarios.count[0], "veces")
 st.write("Varianza de los salarios:", varianza_salarios)
 st.write("Desviación estándar de los salarios:", desviacion_estandar_salarios)
