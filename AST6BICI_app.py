@@ -3,6 +3,7 @@ import streamlit as st
 import numpy as np
 from scipy import stats
 import matplotlib.pyplot as plt
+from statsmodels.tsa.seasonal import seasonal_decompose
 
 # Portada principal
 st.write("# **Análisis de series temporales**")
@@ -301,8 +302,52 @@ elif actividad == "Actividad 2":
     st.write("#### Parte 3: Informe de Resultados")
     st.write("Escribe un informe que resuma tus hallazgos. Incluye gráficos o visualizaciones que ayuden a ilustrar los patrones identificados en los datos. Además, discute cualquier insight o conclusión que hayas obtenido del análisis de los datos.")
     st.write("Entrega tu programa de Python (o libreta de Jupyter) junto con el informe de resultados. Asegúrate de incluir comentarios en tu código para explicar cada paso del proceso de análisis y cómo se generaron los datos.")
+
+    st.code("""
+        import pandas as pd
+        import numpy as np
+        from statsmodels.tsa.seasonal import seasonal_decompose
+        
+        # Definir los productos y el rango de tiempo
+        productos = ['Short deportivo p/u', 'Camisa deportiva p/u', 'Teniss deportivos p/u']
+        fechas = pd.date_range(start='1/1/2021', end='31/12/2023', freq='M')
+        
+        # Crear un DataFrame vacío
+        df = pd.DataFrame()
+        
+        # Generar datos para cada producto
+        for producto in productos:
+            ventas = np.random.randint(50, 200, size=len(fechas))  # Generar ventas aleatorias entre 50 y 200
+            temp_df = pd.DataFrame({'Fecha': fechas, 'Producto': producto, 'Ventas': ventas})
+            df = pd.concat([df, temp_df])
+        
+        # Restablecer el índice del DataFrame
+        df.reset_index(drop=True, inplace=True)
+        
+        # Mostrar las primeras filas del DataFrame
+        print(df)
+    """)
+
+    # Definir los productos y el rango de tiempo
+    productos = ['Short deportivo p/u', 'Camisa deportiva p/u', 'Teniss deportivos p/u']
+    fechas = pd.date_range(start='1/1/2021', end='31/12/2023', freq='M')
     
+    # Crear un DataFrame vacío
+    df = pd.DataFrame()
     
+    # Generar datos para cada producto
+    for producto in productos:
+        ventas = np.random.randint(50, 200, size=len(fechas))  # Generar ventas aleatorias entre 50 y 200
+        temp_df = pd.DataFrame({'Fecha': fechas, 'Producto': producto, 'Ventas': ventas})
+        df = pd.concat([df, temp_df])
+    
+    # Restablecer el índice del DataFrame
+    df.reset_index(drop=True, inplace=True)
+    
+    # Mostrar las primeras filas del DataFrame
+    st.write("### Primeras filas del DataFrame:")
+    st.write(df)
+        
     
     
     
