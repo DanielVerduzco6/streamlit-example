@@ -167,12 +167,15 @@ if actividad == "Actividad 1":
         plt.show()
     """)
 
-    # Diagrama de Caja de Salarios
-    st.pyplot(plt.figure(figsize=(8, 6)))
-    plt.boxplot(salarios, vert=False)
-    plt.xlabel('Salarios')
-    plt.title('Diagrama de Caja de Salarios')
-    plt.grid()
+    # Crear la gráfica dentro de un contexto de Streamlit
+    fig, ax = plt.subplots(figsize=(8, 6))
+    ax.boxplot(salarios, vert=False)
+    ax.set_xlabel('Salarios')
+    ax.set_title('Diagrama de Caja de Salarios')
+    ax.grid()
+    
+    # Mostrar la gráfica en Streamlit
+    st.pyplot(fig)
 
 
     st.code("""
@@ -193,17 +196,20 @@ if actividad == "Actividad 1":
         plt.show()
     """)
 
-    # Gráfico de Dispersión con Líneas de Media y Desviación Estándar
-    st.pyplot(plt.figure(figsize=(10, 6)))
-    plt.plot(salarios, 'o', label='Salarios') # Puntos de los salarios
-    plt.axhline(media, color='r', linestyle='-', label=f'Media: {media:.2f}') # Línea de la media
-    plt.axhline(media + desviacion_estandar, color='g', linestyle='--', label=f'+1 Desv. Est.: {media + desviacion_estandar:.2f}')
-    plt.axhline(media - desviacion_estandar, color='g', linestyle='--', label=f'-1 Desv. Est.: {media - desviacion_estandar:.2f}')
-    plt.title('Dispersión de los Salarios')
-    plt.xlabel('Índice de empleado')
-    plt.ylabel('Salarios')
-    plt.legend()
-    plt.grid(True)
+    # Crear la gráfica dentro de un contexto de Streamlit
+    fig, ax = plt.subplots(figsize=(10, 6))
+    ax.plot(salarios, 'o', label='Salarios') # Puntos de los salarios
+    ax.axhline(media, color='r', linestyle='-', label=f'Media: {media:.2f}') # Línea de la media
+    ax.axhline(media + desviacion_estandar, color='g', linestyle='--', label=f'+1 Desv. Est.: {media + desviacion_estandar:.2f}')
+    ax.axhline(media - desviacion_estandar, color='g', linestyle='--', label=f'-1 Desv. Est.: {media - desviacion_estandar:.2f}')
+    ax.set_title('Dispersión de los Salarios')
+    ax.set_xlabel('Índice de empleado')
+    ax.set_ylabel('Salarios')
+    ax.legend()
+    ax.grid(True)
+    
+    # Mostrar la gráfica en Streamlit
+    st.pyplot(fig)
 
     # Análisis de las estadísticas descriptivas
     st.write("**Análisis de las estadísticas descriptivas:**")
