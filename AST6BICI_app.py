@@ -1,151 +1,193 @@
-import streamlit as st
+# %% [markdown]
+# <div align="center">
+# 
+# # **Analisis de series temporales**
+# 
+# ## **Actividad: Análisis de Estacionariedad de una Serie Temporal**
+# 
+# **Estudiante: Verduzco Valencia Daniel Alejandro**
+# 
+# **Profeso: Mata Lopez Walter Alexander**
+# 
+# **6.-B**
+# 
+# **Ingenieria en Computacion Inteligente**  
+# **Universidad de Colima**  
+# **FIME**
+# 
+# **22/04/2024**
+# 
+# ![Logo de la Universidad de Colima](https://www.ucol.mx/content/cms/41/image/escudos.png)
+# </div>
+
+# %% [markdown]
+# ### Análisis de Estacionariedad de una Serie Temporal
+# 
+# Se tiene un conjunto de datos que representa la temperatura media mensual de una ciudad a lo largo de varios años. La serie de tiempo ha mostrado fluctuaciones que podrían ser tanto estacionales como tendenciales.
+# 
+# Datos:
+# 
+# Los datos se van a generar mediante el siguiente código en Python, que simula la temperatura media mensual en grados Celsius a lo largo de 10 años con una tendencia y estacionalidad anual:
+
+# %%
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.ensemble import IsolationForest
+
+np.random.seed(0)
+t = np.arange(120)
+data = 20 + 0.05 * t + 10 * np.sin(2 * np.pi * t / 12) + np.random.normal(size=120)
+serie_temporal = pd.Series(data, index=pd.date_range(start='2010-01-01', periods=120, freq='M'))
+
+
+# %% [markdown]
+# Actividades:
+# 
+# 1. Visualización de la Serie Temporal: Grafica la serie temporal completa y determina visualmente si muestra estacionalidad, tendencia o ambas. Escribe tus observaciones
+# 
+# 2. Transformaciones: Aplica una transformación de diferenciación a la serie para intentar hacerla estacionaria. Grafica la serie original y la serie transformada en el mismo gráfico para compararlas.
+# 
+# 3. Pruebas de Estacionariedad: Realiza la prueba de Dickey-Fuller aumentada (ADF) para la serie original y la serie transformada. Interpreta los resultados de las pruebas. Explica si alguna de las series (original o transformada) puede considerarse estacionaria según los resultados de las pruebas.
+# 
+# Entrega:
+# Deberás entregar un informe que incluya:
+# - Código utilizado para las transformaciones y pruebas.
+# - Gráficos generados.
+# - Análisis y explicaciones de cada paso.
+# - Conclusiones sobre la estacionariedad de la serie y la efectividad de las transformaciones aplicadas.
+
+# %% [markdown]
+# #### Paso 1:
+# 
+# 1. Visualización de la Serie Temporal: Grafica la serie temporal completa y determina visualmente si muestra estacionalidad, tendencia o ambas. Escribe tus observaciones
+
+# %%
+# Graficar la serie temporal
+plt.figure(figsize=(10, 6))
+serie_temporal.plot()
+plt.title('Serie Temporal de Temperatura Mensual')
+plt.xlabel('Fecha')
+plt.ylabel('Temperatura (°C)')
+plt.grid(True)
+plt.show()
+
+# %%
+#Factor de suavizado
+alfa = 0.2
+serie_suavizada = serie_temporal.ewm(alpha=alfa).mean()
+
+#Vizualizar
+plt.figure(figsize=(10, 6))
+plt.plot(serie_temporal, label='Serie Temporal')
+plt.plot(serie_suavizada, label='Serie Suavizada', color='red')
+plt.title('Serie Temporal de Temperatura Mensual Suavizada')
+plt.xlabel('Fecha')
+plt.ylabel('Temperatura (°C)')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+
+# %% [markdown]
+# ##### Interpretación de la gráfica
+# 
+# Analizando visualmente la gráfica, podemos observar claramente que existe una estacionalidad y tendencia. Esto se debe a que se aprecia un patrón oscilante repetitivo a lo largo de la serie de tiempo. Asimismo, podemos observar que esta misma oscilación sigue una tendencia, que inicia en el año 2010 con valores aproximados que van desde 12°C a 32.5°C, y aumenta hasta valores aproximados de 16°C a 36°C para finales de 2018 e inicios de 2019. Esto indica que la tendencia de la temperatura a través de esta serie de tiempo es ascendente.
+# 
+
+# %% [markdown]
+# #### Paso 2:
+# 
+# 2. Transformaciones: Aplica una transformación de diferenciación a la serie para intentar hacerla estacionaria. Grafica la serie original y la serie transformada en el mismo gráfico para compararlas.
+
+# %%
+# Aplicar diferenciación primera a la serie temporal
+serie_transformada = serie_temporal.diff().dropna()
+
+# Graficar ambas series en el mismo gráfico
+plt.figure(figsize=(10, 6))
+serie_temporal.plot(label='Serie Original')
+serie_transformada.plot(label='Serie Transformada (Diferenciada)')
+plt.title('Comparación entre Serie Original y Serie Transformada')
+plt.xlabel('Fecha')
+plt.ylabel('Temperatura (°C)')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+
+# %% [markdown]
+# #### Interpretación de la gráfica:
+# 
+# Podemos observar cómo la gráfica ha sido transformada a una serie temporal estacionaria, lo que muestra valores medios estables y no crecientes o decrecientes en comparación con la gráfica original. Esta última muestra valores de temperatura crecientes a lo largo de la serie de tiempo.
+# 
+
+# %% [markdown]
+# #### Paso 3:
+# 3. Pruebas de Estacionariedad: Realiza la prueba de Dickey-Fuller aumentada (ADF) para la serie original y la serie transformada. Interpreta los resultados de las pruebas. Explica si alguna de las series (original o transformada) puede considerarse estacionaria según los resultados de las pruebas.
+
+# %%
 from statsmodels.tsa.stattools import adfuller
 
-# Portada principal
-st.title('Análisis de series temporales')
-st.header('Compendio de tareas y ejercicios')
-st.write("Estudiante: Verduzco Valencia Daniel Alejandro")
-st.write("Profesor: Mata López Walter Alexander")
-st.write("6-B")
-st.write("Ingeniería en Computación Inteligente")
-st.write("Universidad de Colima")
-st.write("FIME")
-st.write("2024")
+#Aplicar prueba ADF a la serie temporal
+resultado = adfuller(serie_temporal)
+print('Serie Temporal')
+print('Estadístico ADF:', resultado[0])
+print('Valor p:', resultado[1])
 
-# Botones para acceder a los códigos
-if st.button('Parcial 1 y 2'):
-    st.write('### Código 1: Estadísticas descriptivas')
-    # Código 1: Estadísticas descriptivas
-    
-    # Generar datos
-    np.random.seed(0)
-    data = np.random.normal(0, 1, 1000)
-    df = pd.DataFrame(data, columns=['Valores'])
-    
-    # Descripción de los datos
-    st.write('**Descripción de los datos:**')
-    st.write(df.describe())
-    
-    # Histograma
-    st.write('**Histograma:**')
-    fig, ax = plt.subplots()
-    ax.hist(df['Valores'], bins=30, color='blue', alpha=0.7)
-    ax.set_xlabel('Valor')
-    ax.set_ylabel('Frecuencia')
-    st.pyplot(fig)
-    
-    st.write('### Código 2: Tarea de patrones')
-    # Código 2: Tarea de patrones
-    
-    # Generar datos
-    np.random.seed(0)
-    tiempo = np.linspace(0, 10, 100)
-    seno = np.sin(tiempo)
-    coseno = np.cos(tiempo)
-    
-    # Gráfica de los patrones
-    st.write('**Gráfica de los patrones:**')
-    fig, ax = plt.subplots()
-    ax.plot(tiempo, seno, label='Seno')
-    ax.plot(tiempo, coseno, label='Coseno')
-    ax.set_xlabel('Tiempo')
-    ax.set_ylabel('Valor')
-    ax.legend()
-    st.pyplot(fig)
-    
-elif st.button('Parcial 3'):
-    st.write('### Código 3: Tarea de Anomalías')
-    # Código 3: Tarea de Anomalías
-    
-    # Generar datos
-    np.random.seed(0)
-    horas = pd.date_range(start='2024-01-01', end='2024-04-01', freq='H')
-    temperaturas = np.random.normal(loc=20, scale=2, size=len(horas)) # Lecturas de temperatura normales
-    
-    # Introducir anomalías
-    indices_anomalos = np.random.choice(range(len(horas)), size=50, replace=False)
-    temperaturas[indices_anomalos] += np.random.normal(loc=10, scale=2, size=len(indices_anomalos)) # Hacer las anomalías significativamente más grandes
-    
-    # Crear DataFrame
-    df_temperaturas = pd.DataFrame({'Fecha': horas, 'Temperaturas': temperaturas})
-    
-    # Utilizar Isolation Forest para detectar anomalías
-    iso_forest = IsolationForest(contamination=0.02) # Suponemos que aproximadamente el 2% de los datos son anomalías
-    anomalies = iso_forest.fit_predict(df_temperaturas[['Temperaturas']])
-    df_temperaturas['Anomaly'] = anomalies == -1
-    
-    # Gráfica de temperaturas y anomalías
-    st.write('**Gráfica de temperaturas y anomalías:**')
-    plt.figure(figsize=(15, 6))
-    plt.plot(df_temperaturas['Fecha'], df_temperaturas['Temperaturas'], label='Temperaturas')
-    plt.scatter(df_temperaturas.loc[df_temperaturas['Anomaly'], 'Fecha'], df_temperaturas.loc[df_temperaturas['Anomaly'], 'Temperaturas'], color='red', label='Anomalía', marker='x', s=100) # Marcar anomalías con una X roja
-    plt.xlabel('Fecha')
-    plt.ylabel('Temperatura')
-    plt.title('Lecturas de Temperatura con Anomalía Detectada')
-    plt.legend()
-    plt.grid(True)
-    st.pyplot(plt)
-    
-    st.write('### Código 4: Análisis de Estacionariedad de una Serie Temporal')
-    # Código 4: Análisis de Estacionariedad de una Serie Temporal
-    
-    # Generar datos
-    np.random.seed(0)
-    t = np.arange(120)
-    data = 20 + 0.05 * t + 10 * np.sin(2 * np.pi * t / 12) + np.random.normal(size=120)
-    serie_temporal = pd.Series(data, index=pd.date_range(start='2010-01-01', periods=120, freq='M'))
-    
-    # Visualización de la Serie Temporal
-    st.write('**Visualización de la Serie Temporal:**')
-    plt.figure(figsize=(10, 6))
-    serie_temporal.plot()
-    plt.title('Serie Temporal de Temperatura Mensual')
-    plt.xlabel('Fecha')
-    plt.ylabel('Temperatura (°C)')
-    plt.grid(True)
-    st.pyplot(plt)
-    
-    # Transformaciones
-    st.write('**Transformaciones:**')
-    st.write('Aplica una transformación de diferenciación a la serie para intentar hacerla estacionaria.')
-    serie_transformada = serie_temporal.diff().dropna()
-    
-    # Graficar ambas series en el mismo gráfico
-    plt.figure(figsize=(10, 6))
-    serie_temporal.plot(label='Serie Original')
-    serie_transformada.plot(label='Serie Transformada (Diferenciada)')
-    plt.title('Comparación entre Serie Original y Serie Transformada')
-    plt.xlabel('Fecha')
-    plt.ylabel('Temperatura (°C)')
-    plt.legend()
-    plt.grid(True)
-    st.pyplot(plt)
-    
-    # Pruebas de Estacionariedad
-    st.write('**Pruebas de Estacionariedad:**')
-    st.write('Realiza la prueba de Dickey-Fuller aumentada (ADF) para la serie original y la serie transformada.')
-    
-    # Aplicar prueba ADF a la serie temporal
-    resultado = adfuller(serie_temporal)
-    st.write('Serie Temporal')
-    st.write('Estadístico ADF:', resultado[0])
-    st.write('Valor p:', resultado[1])
-    if resultado[1] < 0.05:
-        st.write('La serie temporal es estacionaria.')
-    else:
-        st.write('La serie temporal no es estacionaria.')
-    
-    # Aplicar prueba ADF a la serie transformada
-    resultado = adfuller(serie_transformada)
-    st.write('Serie Transformada')
-    st.write('Estadístico ADF:', resultado[0])
-    st.write('Valor p:', resultado[1])
-    if resultado[1] < 0.05:
-        st.write('La serie transformada es estacionaria.')
-    else:
-        st.write('La serie transformada no es estacionaria.')
+#Interpretar el resultado basado en el valor p
+if resultado[1] < 0.05:
+    print('La serie temporal es estacionaria.')
+else:
+    print('La serie temporal no es estacionaria.')
+
+
+#Vizualizar la serie temporal
+plt.figure(figsize=(10, 6))
+plt.plot(serie_temporal, label='Serie Temporal')
+plt.title('Serie Temporal de Temperatura Mensual')
+plt.xlabel('Fecha')
+plt.ylabel('Temperatura (°C)')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+
+#Aplicar prueba ADF a la serie transformada
+resultado = adfuller(serie_transformada)
+print('\n\nSerie Transformada')
+print('Estadístico ADF:', resultado[0])
+print('Valor p:', resultado[1])
+
+#Interpretar el resultado basado en el valor p
+if resultado[1] < 0.05:
+    print('La serie transformada es estacionaria.')
+else:
+    print('La serie transformada no es estacionaria.')
+
+
+#Vizualizar la serie transformada
+plt.figure(figsize=(10, 6))
+plt.plot(serie_transformada, label='Serie Transformada')
+plt.title('Serie Transformada de Temperatura Mensual')
+plt.xlabel('Fecha')
+plt.ylabel('Temperatura (°C)')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+
+
+
+
+# %% [markdown]
+# ##### Interpretación de las gráficas y conclusiones
+# 
+# Podemos observar cómo en la primera gráfica, que es la original, no puede ser categorizada como estacionaria debido a las características que presentan los datos en ella al seguir una estacionalidad y tendencia a lo largo de la serie temporal.
+# 
+# Por otro lado, podemos observar la segunda gráfica en la que se ha transformado la serie de tiempo a estacionaria, eliminando así las tendencias y ciclos estacionales para poder mantener valores constantes a lo largo de la serie de tiempo.
+# 
+# Esto es importante, ya que gracias a que se ha transformado la serie temporal inicialmente no estacionaria a estacionaria, las predicciones en dicha serie de tiempo ahora pueden ser menos sesgadas y más exactas.
+# 
+
 
