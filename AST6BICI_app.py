@@ -1,4 +1,8 @@
 import streamlit as st
+import streamlit as st
+import numpy as np
+from scipy import stats
+import matplotlib.pyplot as plt
 
 # Portada principal
 st.write("# **Análisis de series temporales**")
