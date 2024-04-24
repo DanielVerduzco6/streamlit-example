@@ -345,8 +345,78 @@ elif actividad == "Actividad 2":
     df.reset_index(drop=True, inplace=True)
     
     # Mostrar las primeras filas del DataFrame
-    st.write("### Primeras filas del DataFrame:")
+    st.write("### Mostrar filas del DataFrame:")
     st.write(df)
+
+    st.code("""
+        import matplotlib.pyplot as plt
+        from statsmodels.tsa.seasonal import seasonal_decompose
+        
+        # Convertir la columna 'Fecha' a datetime
+        df['Fecha'] = pd.to_datetime(df['Fecha'])
+        
+        # Reestructurar el DataFrame
+        df_pivot = df.pivot(index='Fecha', columns='Producto', values='Ventas')
+        
+        # Limitar el DataFrame al rango de fechas especificado
+        df_pivot = df_pivot.loc['2021-01-01':'2023-12-31']
+        
+        # Descomponer las series de tiempo para cada producto
+        for producto in df_pivot.columns:
+            print(f"\nDescomposición de la serie de tiempo para {producto}:")
+            result = seasonal_decompose(df_pivot[producto].dropna(), model='additive')
+            
+            # Graficar los datos originales, la tendencia, la estacionalidad y los residuos
+            plt.figure(figsize=(12,8))
+            plt.subplot(411)
+            plt.plot(result.observed, label='Original')
+            plt.legend(loc='best')
+            plt.subplot(412)
+            plt.plot(result.trend, label='Trend')
+            plt.legend(loc='best')
+            plt.subplot(413)
+            plt.plot(result.seasonal,label='Seasonality')
+            plt.legend(loc='best')
+            plt.subplot(414)
+            plt.plot(result.resid, label='Residuals')
+            plt.legend(loc='best')
+            plt.tight_layout()
+            plt.show()
+    """)
+
+    def visualizar_descomposicion(df):
+        # Convertir la columna 'Fecha' a datetime
+        df['Fecha'] = pd.to_datetime(df['Fecha'])
+    
+        # Reestructurar el DataFrame
+        df_pivot = df.pivot(index='Fecha', columns='Producto', values='Ventas')
+    
+        # Limitar el DataFrame al rango de fechas especificado
+        df_pivot = df_pivot.loc['2021-01-01':'2023-12-31']
+    
+        # Descomponer las series de tiempo para cada producto
+        for producto in df_pivot.columns:
+            st.write(f"\nDescomposición de la serie de tiempo para {producto}:")
+            result = seasonal_decompose(df_pivot[producto].dropna(), model='additive')
+            
+            # Graficar los datos originales, la tendencia, la estacionalidad y los residuos
+            fig, ax = plt.subplots(4, 1, figsize=(12, 8))
+            ax[0].plot(result.observed, label='Original')
+            ax[0].legend(loc='best')
+            ax[1].plot(result.trend, label='Trend')
+            ax[1].legend(loc='best')
+            ax[2].plot(result.seasonal,label='Seasonality')
+            ax[2].legend(loc='best')
+            ax[3].plot(result.resid, label='Residuals')
+            ax[3].legend(loc='best')
+            fig.tight_layout()
+            st.pyplot(fig)
+    
+    # Cargar el DataFrame df
+    df = pd.read_csv("datos.csv")
+    
+    # Llamar a la función para visualizar la descomposición
+    visualizar_descomposicion(df)
         
     
     
