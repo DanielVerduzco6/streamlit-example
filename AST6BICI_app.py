@@ -1,47 +1,37 @@
 import streamlit as st
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-from sklearn.ensemble import IsolationForest
-from statsmodels.tsa.stattools import adfuller
 
-def parte_1_tarea_anomalias():
-    # Código 3: Tarea de Anomalías
-    
-    # Inserta aquí el código de la Tarea de Anomalías
-    
-    pass
+# Portada principal
+st.title('Análisis de Series Temporales')
+st.header('Compendio de tareas y ejercicios')
+st.subheader('Estudiante: Verduzco Valencia Daniel Alejandro')
+st.subheader('Profesor: Mata López Walter Alexander')
+st.subheader('6-B')
+st.subheader('Ingeniería en Computación Inteligente')
+st.subheader('Universidad de Colima')
+st.subheader('FIME')
+st.subheader('2024')
 
-def parte_2_analisis_estacionariedad():
-    # Código 4: Análisis de Estacionariedad de una Serie Temporal
-    
-    # Inserta aquí el código del Análisis de Estacionariedad
-    
-    pass
+# Botones para acceder a los parciales
+if st.button('Parcial 1 y 2'):
+    st.header('Parcial 1 y 2')
+    st.subheader('Código 1: Tarea de Anomalías')
+    st.code("""
+    # Aquí va el código de la Tarea de Anomalías
+    """, language='python')
 
-def portada_principal():
-    # Portada principal
-    
-    st.title("Análisis de series temporales")
-    st.header("Compendio de tareas y ejercicios")
-    st.write("Estudiante: Verduzco Valencia Daniel Alejandro")
-    st.write("Profesor: Mata López Walter Alexander")
-    st.write("6-B")
-    st.write("Ingeniería en Computación Inteligente")
-    st.write("Universidad de Colima - FIME")
-    st.write("2024")
-    
-    # Botones para acceder a cada parte del análisis
-    if st.button("Parcial 1 y 2"):
-        st.write("## Parcial 1 y 2")
-        st.write("### Tarea de Anomalías")
-        parte_1_tarea_anomalias()
-        st.write("### Análisis de Estacionariedad de una Serie Temporal")
-        parte_2_analisis_estacionariedad()
-    if st.button("Parcial 3"):
-        st.write("## Parcial 3")
-        # Agrega aquí el código para el Parcial 3, si lo hay
+    st.subheader('Código 2: Análisis de Estacionariedad de una Serie Temporal')
+    st.code("""
+    # Aquí va el código de Análisis de Estacionariedad de una Serie Temporal
+    """, language='python')
 
-if __name__ == "__main__":
-    portada_principal()
+if st.button('Parcial 3'):
+    st.header('Parcial 3')
+    st.subheader('Código 3: Tarea de Anomalías')
+    st.code("""
+    # Aquí va el código de la Tarea de Anomalías
+    """, language='python')
 
+    st.subheader('Código 4: Análisis de Estacionariedad de una Serie Temporal')
+    st.code("""
+    # Aquí va el código de Análisis de Estacionariedad de una Serie Temporal
+    """, language='python')
