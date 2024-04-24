@@ -147,6 +147,7 @@ if actividad == "Actividad 1":
     plt.grid(True)
 
 
+
     # 3. Interpretar los Resultados
     st.write("### 3. Interpretar los Resultados:")
     
