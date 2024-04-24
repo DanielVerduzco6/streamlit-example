@@ -1,6 +1,8 @@
 import streamlit as st
 
 # Portada principal
+    st.write('### Código 1: Estadísticas descriptivas')
+    # Código 1: Estadísticas descriptivas
     st.markdown("""
     # **Análisis de series temporales**
     
@@ -20,6 +22,7 @@ import streamlit as st
     
     ![Logo de la Universidad de Colima](https://www.ucol.mx/content/cms/41/image/escudos.png)
     """)
+    st.markdown("## Problema")
 
 # Botones para acceder a los códigos
 if st.button('Actividad 1'):
