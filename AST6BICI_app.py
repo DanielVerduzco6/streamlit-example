@@ -41,6 +41,37 @@ if actividad == "Actividad 1":
     ![Logo de la Universidad de Colima](https://www.ucol.mx/content/cms/41/image/escudos.png)
     </div>
     """, unsafe_allow_html=True)
+
+    # Problema
+    st.write("## Problema")
+    st.write("Contexto: Una empresa desea realizar un análisis estadístico de los salarios anuales de sus empleados. El propósito de este análisis es obtener una mejor comprensión de la distribución de los ingresos entre los empleados, lo que permitirá a la empresa tomar decisiones informadas respecto a la equidad salarial y la estructura de compensaciones.")
+    
+    st.write("Objetivo: Como parte de un proyecto de análisis de datos, se te ha asignado la tarea de calcular las estadísticas descriptivas básicas de los salarios anuales en la empresa. Específicamente, deberás calcular la media, mediana, moda, varianza y desviación estándar de los salarios. Además, deberás interpretar estas estadísticas para discutir la equidad salarial y la dispersión de los salarios.")
+    
+    # Instrucciones
+    st.write("#### Instrucciones")
+    st.write("#### 1. Generar Datos:")
+    st.write("Utiliza el siguiente código en Python para generar una muestra aleatoria de salarios anuales. Esta muestra simulará los salarios anuales de los empleados de la empresa.")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 elif actividad == "Actividad 2":
     st.write('### Código 2: Tarea de patrones')
     # Aquí va el código 2
