@@ -281,7 +281,7 @@ elif actividad == "Actividad 2":
     **Universidad de Colima**  
     **FIME**
     
-    **12/04/2024**
+    **19/04/2024**
     
     ![Logo de la Universidad de Colima](https://www.ucol.mx/content/cms/41/image/escudos.png)
     </div>
