@@ -145,7 +145,9 @@ if actividad == "Actividad 1":
     plt.title('Distribución de Salarios Anuales')
     plt.legend()
     plt.grid(True)
-
+    # Mostrar la gráfica en Streamlit
+    st.pyplot(fig)
+#########################################################3
 
 
     # 3. Interpretar los Resultados
