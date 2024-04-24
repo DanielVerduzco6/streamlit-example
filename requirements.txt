@@ -4,3 +4,4 @@ streamlit
 matplotlib==3.4.3
 scikit-learn
 statsmodels
+scikit-learn==0.24.2
