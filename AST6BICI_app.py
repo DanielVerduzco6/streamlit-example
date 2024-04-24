@@ -56,7 +56,24 @@ if actividad == "Actividad 1":
     st.write("#### Instrucciones")
     st.write("#### 1. Generar Datos:")
     st.write("Utiliza el siguiente código en Python para generar una muestra aleatoria de salarios anuales. Esta muestra simulará los salarios anuales de los empleados de la empresa.")
-
+    
+    st.write("## Código para generar los datos de salarios anuales:")
+    st.code("""
+    import numpy as np
+    from scipy import stats
+    import matplotlib.pyplot as plt
+    
+    # Generar datos de salarios anuales (simulados)
+    np.random.seed(1783)
+    salarios = np.random.normal(loc=50000, scale=15000, size=250)
+    salarios = np.round(salarios, -3)
+    
+    # Asegurarse de que todos los salarios sean positivos
+    salarios = np.abs(salarios)
+    
+    print(salarios)
+    """)
+    
     # Generar datos de salarios anuales (simulados)
     np.random.seed(1783)
     salarios = np.random.normal(loc=50000, scale=15000, size=250)
