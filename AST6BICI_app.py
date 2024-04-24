@@ -61,6 +61,9 @@ if actividad == "Actividad 1":
     # Asegurarse de que todos los salarios sean positivos
     salarios = np.abs(salarios)
     
+    # Mostrar los salarios generados
+    st.write("## Datos de salarios anuales generados:")
+    st.write(salarios)
 
 
 
