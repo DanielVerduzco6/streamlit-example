@@ -57,7 +57,6 @@ if actividad == "Actividad 1":
     st.write("#### 1. Generar Datos:")
     st.write("Utiliza el siguiente código en Python para generar una muestra aleatoria de salarios anuales. Esta muestra simulará los salarios anuales de los empleados de la empresa.")
     
-    st.write("## Código para generar los datos de salarios anuales:")
     st.code("""
     import numpy as np
     from scipy import stats
@@ -112,7 +111,6 @@ if actividad == "Actividad 1":
     varianza_salarios = np.var(salarios)
     desviacion_estandar_salarios = np.std(salarios)
     
-    st.write("### 3. Resultados de las estadísticas descriptivas:")
     st.write("- Media de los salarios:", media_salarios)
     st.write("- Mediana de los salarios:", mediana_salarios)
     st.write("- Moda de los salarios:", moda_salarios.mode)
@@ -219,17 +217,17 @@ if actividad == "Actividad 1":
     st.write("1. Media y Mediana:")
     st.write("- La media de los salarios es de 49,604.0, lo que nos dice el salario promedio de los empleados.")
     st.write("- La mediana de los salarios es de 50,000.0, lo que nos dice el salario central cuando los salarios se ordenan de menor a mayor.")
-    st.write("Ya que la media y la mediana son cercanas en este caso, sugiere que la distribución de los salarios es relativamente simétrica y no está sesgada hacia valores extremos. Esto nos dice que la mayoría de los salarios se encuentran al rededor de estos valores centrales.")
+    st.write("- Ya que la media y la mediana son cercanas en este caso, sugiere que la distribución de los salarios es relativamente simétrica y no está sesgada hacia valores extremos. Esto nos dice que la mayoría de los salarios se encuentran al rededor de estos valores centrales.")
     
     st.write("2. Moda:")
     st.write("- La moda de los salarios es de 52,000.0 y aparece 10 veces en los datos. Esto nos dice que 52,000.0 es el salario más común entre los empleados.")
     
     st.write("3. Varianza y Desviación Estándar:")
     st.write("- La varianza de los salarios es de 278,327,184.0 y la desviación estándar es de aproximadamente 16,683.14.")
-    st.write("Una varianza alta y una desviación estándar considerable indican que los salarios están dispersos alrededor de la media. En este caso, los salarios no están agrupados cerca de la media, sino que muestran una dispersión alta. Esto nos dice que hay una variabilidad alta en los salarios de los empleados.")
+    st.write("- Una varianza alta y una desviación estándar considerable indican que los salarios están dispersos alrededor de la media. En este caso, los salarios no están agrupados cerca de la media, sino que muestran una dispersión alta. Esto nos dice que hay una variabilidad alta en los salarios de los empleados.")
 
     # 4. Informe
-    st.write("#### Informe:")
+    st.write("#### 4. Informe:")
     st.write("- Escribe un informe breve que incluya los cálculos realizados, las gráficas pertinentes (como histogramas o gráficos de cajas), y una discusión sobre las implicaciones de estas estadísticas en términos de equidad salarial y política de remuneraciones de la empresa.")
 
     # Informe sobre Análisis de Salarios Anuales
