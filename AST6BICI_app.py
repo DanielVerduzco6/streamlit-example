@@ -429,6 +429,59 @@ elif actividad == "Actividad 2":
         
         fig.tight_layout()
         st.pyplot(fig)
+
+    st.write("""
+        #### Parte 2 y 3
+        
+        Parte 2: Análisis de Datos
+        
+        Una vez que hayas generado los datos, realiza un análisis para identificar posibles patrones en las ventas mensuales. Algunas preguntas que podrías explorar incluyen:
+        
+        - ¿Hay algún patrón estacional en las ventas de ciertos productos? Sí (se argumenta en el análisis de patrones de ventas mensuales)
+        - ¿Se observa alguna tendencia de crecimiento o decrecimiento en las ventas a lo largo del tiempo? Sí (se argumenta en el análisis de patrones de ventas mensuales)
+        - ¿Existen meses específicos en los que las ventas tienden a ser más altas o más bajas? Sí (se argumenta en el análisis de patrones de ventas mensuales)
+        
+        
+        Parte 3: Informe de Resultados
+        
+        Escribe un informe que resuma tus hallazgos. Incluye gráficos o visualizaciones que ayuden a ilustrar los patrones identificados en los datos. Además, discute cualquier insight o conclusión que hayas obtenido del análisis de los datos.
+        
+        
+        ##### Análisis de patrones en las ventas mensuales y resumen de hallazgos.
+        
+        1. Camisa deportiva:
+        
+            Para las camisas deportivas, podemos observar que tenemos 4 gráficas diferentes. La primera es la gráfica Original, que muestra la cantidad de unidades de camisas deportivas registradas como vendidas al final de cada mes a lo largo de 3 años, que comprenden las fechas del 2021-01-01 al 2023-12-31.
+        
+            La segunda gráfica es Trend o tendencia, que plasma el aumento o decremento en las ventas a lo largo del tiempo. Podemos observar en este caso que a lo largo del año 2021 hubo una disminución importante en la venta de este producto entre los meses de septiembre y octubre, para después volver a tener una pequeña alza en las ventas y cerrar este año con un número de ventas cercano al de inicios de año. De igual manera, podemos observar un importante aumento en las ventas que comprenden de enero a diciembre del año 2022, teniendo una muy pequeña caída entre los meses de octubre y noviembre, pero logró en diciembre volver a repuntar y cerrar el año con mayores ventas que el año anterior. Mientras que en el año 2023 parece haber iniciado con una pequeña caída para después tener un alza en las ventas y alrededor de los meses de septiembre y octubre tener un decremento en ventas para que al finalizar el año vuelva a tener un alza en ventas.
+        
+            La tercera gráfica, que es la estacional, podemos observar claramente cómo hay patrones en las ventas de este producto, siendo los meses de febrero a julio los meses en que más se vende este producto, mientras que en los meses de agosto a noviembre e inicios de año con enero son los meses en los que menos se vende este producto.
+        
+            La cuarta gráfica, que es la residual, podemos observar que no hay patrón aparente y la naturaleza de la gráfica parece ser aleatoria. Esto nos dice que la descomposición de la serie temporal ha capturado adecuadamente la tendencia y la estacionalidad en los datos, y que los residuos representan la variación aleatoria en las ventas de camisas deportivas.
+        
+        
+        2. Short deportivo:
+        
+            Para los shorts deportivos, podemos observar que tenemos 4 gráficas diferentes. La primera es la gráfica Original, que muestra la cantidad de unidades de shorts deportivos registrados como vendidos al final de cada mes a lo largo de 3 años, que comprenden las fechas del 2021-01-01 al 2023-12-31.
+        
+            La segunda gráfica, Trend o tendencia, que plasma el aumento o decremento de las ventas a lo largo del tiempo, podemos observar en este caso que alrededor de julio a diciembre del 2021 hubo una importante disminución en las ventas de este producto. El año 2022 no fue diferente en este aspecto, ya que de igual manera tuvo una importante disminución en las ventas, siendo los meses de octubre a noviembre los que tuvieron registradas menores ventas. De igual manera, el año 2023 empezó una pequeña alza para después volver a caer en ventas en el mes de mayo para así volver a repuntar en ventas.
+        
+            En la tercera gráfica, que es la estacional, podemos observar claramente cómo hay patrones en las ventas de este producto, siendo los meses de marzo y abril los que registran un muy pequeño alza en las ventas para después caer en mayo y volver a tener un pequeño alza en los meses de junio y julio para nuevamente volver a caer en el mes de agosto y tener un repunte en los meses de septiembre a diciembre, empezando cada año con una pequeña caída.
+        
+            La cuarta gráfica, que es la residual, podemos observar que no hay patrón aparente y la naturaleza de la gráfica parece ser aleatoria. Esto nos dice que la descomposición de la serie temporal ha capturado adecuadamente la tendencia y la estacionalidad en los datos, y que los residuos representan la variación aleatoria en las ventas de shorts deportivos.
+        
+        
+        3. Tennis deportivos:
+        
+            Para los tenis deportivos, podemos observar que igualmente tenemos 4 gráficas diferentes. La primera es la gráfica Original, que muestra la cantidad de unidades de tenis deportivos registrados como vendidos al final de cada mes a lo largo de 3 años, que comprenden las fechas del 2021-01-01 al 2023-12-31.
+        
+            La segunda gráfica, Trend o tendencia, que plasma el aumento o decremento de las ventas a lo largo del tiempo, nos muestra a lo largo del mes de julio a diciembre del 2021 un pequeño aumento en las ventas de este producto, para después tener un aumento bastante exponencial en los meses de enero a octubre del 2022 para después tener un pequeño descenso en las ventas del producto entre los meses de noviembre a julio del 2023.
+        
+            En la tercera gráfica, que es la estacional, podemos observar claramente cierto patrón en el mes de mayo, que según la gráfica es el mes en el cual más ventas registra este producto, mientras que los meses de junio a octubre son los que parecen presentar menos ventas.
+        
+            La cuarta gráfica, que es la residual, podemos observar que no hay patrón aparente y la naturaleza de la gráfica parece ser aleatoria. Esto nos dice que la descomposición de la serie temporal ha capturado adecuadamente la tendencia y la estacionalidad en los datos, y que los residuos representan la variación aleatoria en las ventas de tenis deportivos.
+            
+    """)
         
     
     
