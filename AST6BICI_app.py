@@ -197,6 +197,8 @@ if actividad == "Actividad 1":
     """)
 
     # Crear la gráfica dentro de un contexto de Streamlit
+    media = 49604.0
+    desviacion_estandar = 16683.14071150873
     fig, ax = plt.subplots(figsize=(10, 6))
     ax.plot(salarios, 'o', label='Salarios') # Puntos de los salarios
     ax.axhline(media, color='r', linestyle='-', label=f'Media: {media:.2f}') # Línea de la media
