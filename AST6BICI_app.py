@@ -662,6 +662,44 @@ elif actividad == "Actividad 3":
     plt.title('Cantidad de Anomalías por Mes')
     plt.grid(True)
     st.pyplot(plt)
+
+    st.code("""
+        # Calcular la media móvil con una ventana de 24 horas
+        df_temperaturas['Moving_Avg'] = df_temperaturas['Temperaturas'].rolling(window=24).mean()
+        
+        # Gráfica de temperaturas, anomalías y media móvil
+        plt.figure(figsize=(15, 6))
+        plt.plot(df_temperaturas['Fecha'], df_temperaturas['Temperaturas'], label='Temperaturas')
+        plt.plot(df_temperaturas['Fecha'], df_temperaturas['Moving_Avg'], label='Media Móvil', color='orange')
+        plt.scatter(df_temperaturas.loc[df_temperaturas['Anomaly'], 'Fecha'], df_temperaturas.loc[df_temperaturas['Anomaly'], 'Temperaturas'], color='red', label='Anomalía', marker='x', s=100) # Marcar anomalías con una X roja
+        plt.xlabel('Fecha')
+        plt.ylabel('Temperatura')
+        plt.title('Lecturas de Temperatura con Anomalía Detectada y Media Móvil')
+        plt.legend()
+        
+        plt.grid(True)
+        plt.show()
+    """)
+
+    # Calcular la media móvil con una ventana de 24 horas
+    df_temperaturas['Moving_Avg'] = df_temperaturas['Temperaturas'].rolling(window=24).mean()
+    
+    # Gráfica de temperaturas, anomalías y media móvil
+    st.write("### Lecturas de Temperatura con Anomalía Detectada y Media Móvil")
+    plt.figure(figsize=(15, 6))
+    plt.plot(df_temperaturas['Fecha'], df_temperaturas['Temperaturas'], label='Temperaturas')
+    plt.plot(df_temperaturas['Fecha'], df_temperaturas['Moving_Avg'], label='Media Móvil', color='orange')
+    plt.scatter(df_temperaturas.loc[df_temperaturas['Anomaly'], 'Fecha'], df_temperaturas.loc[df_temperaturas['Anomaly'], 'Temperaturas'], color='red', label='Anomalía', marker='x', s=100) # Marcar anomalías con una X roja
+    plt.xlabel('Fecha')
+    plt.ylabel('Temperatura')
+    plt.title('Lecturas de Temperatura con Anomalía Detectada y Media Móvil')
+    plt.legend()
+    
+    plt.grid(True)
+    st.pyplot(plt)
+
+
+
     
 
 
