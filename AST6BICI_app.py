@@ -603,14 +603,14 @@ elif actividad == "Actividad 3":
     ax.legend()
     
     ax.grid(True)
+    
+    # Convertir la gráfica a un formato que Streamlit pueda mostrar
     st.pyplot(fig)
-    
-    
-    
-    
-    
-    
-    
+        
+        
+        
+        
+        
 
 
 
