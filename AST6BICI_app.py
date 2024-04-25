@@ -573,12 +573,6 @@ elif actividad == "Actividad 3":
             plt.grid(True)
             plt.show()
     """)
-    import pandas as pd
-    import numpy as np
-    import streamlit as st
-    import matplotlib.pyplot as plt
-    from sklearn.ensemble import IsolationForest
-    
     # Generar datos
     np.random.seed(0)
     horas = pd.date_range(start='2024-01-01', end='2024-04-01', freq='H')
