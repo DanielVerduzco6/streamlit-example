@@ -605,15 +605,10 @@ elif actividad == "Actividad 3":
     
     # Mostrar gráfico en Streamlit
     st.pyplot(fig)
-                    
     
     
     
     
-
-
-
-
 
 
 
