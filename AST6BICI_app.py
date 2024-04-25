@@ -625,18 +625,18 @@ elif actividad == "Actividad 3":
     
     # Gráfica de temperaturas y anomalías
     st.subheader('Gráfica de temperaturas y anomalías')
-    plt.figure(figsize=(15, 6))
-    plt.plot(df_temperaturas['Fecha'], df_temperaturas['Temperaturas'], label='Temperaturas')
-    plt.scatter(df_temperaturas.loc[df_temperaturas['Anomaly'], 'Fecha'], df_temperaturas.loc[df_temperaturas['Anomaly'], 'Temperaturas'], color='red', label='Anomalía', marker='x', s=100) # Marcar anomalías con una X roja
-    plt.xlabel('Fecha')
-    plt.ylabel('Temperatura')
-    plt.title('Lecturas de Temperatura con Anomalía Detectada')
-    plt.legend()
-    plt.grid(True)
+    fig, ax = plt.subplots(figsize=(15, 6))
+    ax.plot(df_temperaturas['Fecha'], df_temperaturas['Temperaturas'], label='Temperaturas')
+    ax.scatter(df_temperaturas.loc[df_temperaturas['Anomaly'], 'Fecha'], df_temperaturas.loc[df_temperaturas['Anomaly'], 'Temperaturas'], color='red', label='Anomalía', marker='x', s=100) # Marcar anomalías con una X roja
+    ax.set_xlabel('Fecha')
+    ax.set_ylabel('Temperatura')
+    ax.set_title('Lecturas de Temperatura con Anomalía Detectada')
+    ax.legend()
+    ax.grid(True)
     
     # Mostrar gráfica en Streamlit
-    st.pyplot(plt)
-
+    st.pyplot(fig)
+    
 
 
 
