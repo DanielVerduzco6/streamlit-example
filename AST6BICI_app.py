@@ -5,6 +5,7 @@ from scipy import stats
 import matplotlib.pyplot as plt
 from statsmodels.tsa.seasonal import seasonal_decompose
 from sklearn.ensemble import IsolationForest
+from statsmodels.tsa.stattools import adfuller
 
 # Portada principal
 st.write("# **Análisis de series temporales**")
@@ -812,7 +813,140 @@ elif actividad == "Actividad 4":
     plt.legend()
     plt.grid(True)
     st.pyplot(plt)  # Mostrar el gráfico en Streamlit
+
+    st.write("##### Interpretación de la gráfica")
+    st.write("Analizando visualmente la gráfica, podemos observar claramente que existe una estacionalidad y tendencia. Esto se debe a que se aprecia un patrón oscilante repetitivo a lo largo de la serie de tiempo. Asimismo, podemos observar que esta misma oscilación sigue una tendencia, que inicia en el año 2010 con valores aproximados que van desde 12°C a 32.5°C, y aumenta hasta valores aproximados de 16°C a 36°C para finales de 2018 e inicios de 2019. Esto indica que la tendencia de la temperatura a través de esta serie de tiempo es ascendente.")
+
+    st.write("#### Paso 2:")
+    st.write("2. Transformaciones: Aplica una transformación de diferenciación a la serie para intentar hacerla estacionaria. Grafica la serie original y la serie transformada en el mismo gráfico para compararlas.")
+    st.code("""
+        # Aplicar diferenciación primera a la serie temporal
+        serie_transformada = serie_temporal.diff().dropna()
+        
+        # Graficar ambas series en el mismo gráfico
+        plt.figure(figsize=(10, 6))
+        serie_temporal.plot(label='Serie Original')
+        serie_transformada.plot(label='Serie Transformada (Diferenciada)')
+        plt.title('Comparación entre Serie Original y Serie Transformada')
+        plt.xlabel('Fecha')
+        plt.ylabel('Temperatura (°C)')
+        plt.legend()
+        plt.grid(True)
+        plt.show()
+    """)
     
+    # Aplicar diferenciación primera a la serie temporal
+    serie_transformada = serie_temporal.diff().dropna()
+    
+    # Gráfico de ambas series en el mismo gráfico
+    plt.figure(figsize=(10, 6))
+    serie_temporal.plot(label='Serie Original')
+    serie_transformada.plot(label='Serie Transformada (Diferenciada)')
+    plt.title('Comparación entre Serie Original y Serie Transformada')
+    plt.xlabel('Fecha')
+    plt.ylabel('Temperatura (°C)')
+    plt.legend()
+    plt.grid(True)
+    st.pyplot(plt)  # Mostrar el gráfico en Streamlit
 
+    st.write("#### Interpretación de la gráfica:")
+    st.write("Podemos observar cómo la gráfica ha sido transformada a una serie temporal estacionaria, lo que muestra valores medios estables y no crecientes o decrecientes en comparación con la gráfica original. Esta última muestra valores de temperatura crecientes a lo largo de la serie de tiempo.")
 
+    st.write("#### Paso 3:")
+    st.write("3. Pruebas de Estacionariedad: Realiza la prueba de Dickey-Fuller aumentada (ADF) para la serie original y la serie transformada. Interpreta los resultados de las pruebas. Explica si alguna de las series (original o transformada) puede considerarse estacionaria según los resultados de las pruebas.")
+    st.code("""
+        from statsmodels.tsa.stattools import adfuller
+        
+        #Aplicar prueba ADF a la serie temporal
+        resultado = adfuller(serie_temporal)
+        print('Serie Temporal')
+        print('Estadístico ADF:', resultado[0])
+        print('Valor p:', resultado[1])
+        
+        #Interpretar el resultado basado en el valor p
+        if resultado[1] < 0.05:
+            print('La serie temporal es estacionaria.')
+        else:
+            print('La serie temporal no es estacionaria.')
+        
+        
+        #Vizualizar la serie temporal
+        plt.figure(figsize=(10, 6))
+        plt.plot(serie_temporal, label='Serie Temporal')
+        plt.title('Serie Temporal de Temperatura Mensual')
+        plt.xlabel('Fecha')
+        plt.ylabel('Temperatura (°C)')
+        plt.legend()
+        plt.grid(True)
+        plt.show()
+        
+        
+        #Aplicar prueba ADF a la serie transformada
+        resultado = adfuller(serie_transformada)
+        print('\n\nSerie Transformada')
+        print('Estadístico ADF:', resultado[0])
+        print('Valor p:', resultado[1])
+        
+        #Interpretar el resultado basado en el valor p
+        if resultado[1] < 0.05:
+            print('La serie transformada es estacionaria.')
+        else:
+            print('La serie transformada no es estacionaria.')
+        
+        
+        #Vizualizar la serie transformada
+        plt.figure(figsize=(10, 6))
+        plt.plot(serie_transformada, label='Serie Transformada')
+        plt.title('Serie Transformada de Temperatura Mensual')
+        plt.xlabel('Fecha')
+        plt.ylabel('Temperatura (°C)')
+        plt.legend()
+        plt.grid(True)
+        plt.show()
+    """)
+
+    
+    # Aplicar prueba ADF a la serie temporal
+    resultado = adfuller(serie_temporal)
+    st.write('### Serie Temporal')
+    st.write('Estadístico ADF:', resultado[0])
+    st.write('Valor p:', resultado[1])
+    
+    # Interpretar el resultado basado en el valor p
+    if resultado[1] < 0.05:
+        st.write('La serie temporal es estacionaria.')
+    else:
+        st.write('La serie temporal no es estacionaria.')
+    
+    # Visualizar la serie temporal
+    plt.figure(figsize=(10, 6))
+    plt.plot(serie_temporal, label='Serie Temporal')
+    plt.title('Serie Temporal de Temperatura Mensual')
+    plt.xlabel('Fecha')
+    plt.ylabel('Temperatura (°C)')
+    plt.legend()
+    plt.grid(True)
+    st.pyplot(plt)  # Mostrar el gráfico en Streamlit
+    
+    # Aplicar prueba ADF a la serie transformada
+    resultado = adfuller(serie_transformada)
+    st.write('\n\n### Serie Transformada')
+    st.write('Estadístico ADF:', resultado[0])
+    st.write('Valor p:', resultado[1])
+    
+    # Interpretar el resultado basado en el valor p
+    if resultado[1] < 0.05:
+        st.write('La serie transformada es estacionaria.')
+    else:
+        st.write('La serie transformada no es estacionaria.')
+    
+    # Visualizar la serie transformada
+    plt.figure(figsize=(10, 6))
+    plt.plot(serie_transformada, label='Serie Transformada')
+    plt.title('Serie Transformada de Temperatura Mensual')
+    plt.xlabel('Fecha')
+    plt.ylabel('Temperatura (°C)')
+    plt.legend()
+    plt.grid(True)
+    st.pyplot(plt)  # Mostrar el gráfico en Streamlit
 
