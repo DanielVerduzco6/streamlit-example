@@ -682,7 +682,7 @@ elif actividad == "Actividad 3":
         
         Como podemos observar, los datos de temperatura generados a lo largo de la serie de tiempo corresponden a los primeros 3 meses del año 2024, donde consideramos los valores 14.55 a 25.47 como valores de temperatura normales para el área correspondiente en la planta de manufactura. Por mes, podemos observar la cantidad de ocurrencias de temperaturas anómalas. En el primer mes, que corresponde a Enero, tenemos 16 temperaturas anómalas; para Febrero, tenemos 17 temperaturas anómalas contabilizadas; y para Marzo, 11.
         
-        Al graficar los datos, podemos observar que hay ciertos valores que corresponden a valores de temperatura que, según el área en el que están, se clasifican como anómalos. De estos valores anómalos, tenemos 44, los cuales no parecen seguir un patrón o tendencia, salvo que por mes superan mas de los 10 casos. De igual manera, podemos apreciar la media móvil de nuestros datos, viendo cómo ésta tiende a subir o bajar sin un patrón aparente en las gráficas generadas.
+        Al graficar los datos, podemos observar que hay ciertos valores que corresponden a valores de temperatura que, según el área en el que están, se clasifican como anómalos. De estos valores anómalos, tenemos 44, los cuales no parecen seguir un patrón o tendencia, salvo que por mes superan mas de los 10 casos.
             
     """)
 
