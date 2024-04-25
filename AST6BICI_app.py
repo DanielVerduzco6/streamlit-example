@@ -595,13 +595,74 @@ elif actividad == "Actividad 3":
     
     # Gráfico interactivo de temperaturas y anomalías
     st.line_chart(df_temperaturas.set_index('Fecha'))
+
+    st.code("""
+        #Valores de temperatura noramales
+        q1 = df_temperaturas['Temperaturas'].quantile(0.25)
+        q3 = df_temperaturas['Temperaturas'].quantile(0.75)
+        iqr = q3 - q1
+        limite_inferior = q1 - 1.5 * iqr
+        limite_superior = q3 + 1.5 * iqr
         
-        
-        
+        print("El rango normal de temperaturas es de", limite_inferior, "a", limite_superior)
+    """)
+    # Valores de temperatura normales
+    q1 = df_temperaturas['Temperaturas'].quantile(0.25)
+    q3 = df_temperaturas['Temperaturas'].quantile(0.75)
+    iqr = q3 - q1
+    limite_inferior = q1 - 1.5 * iqr
+    limite_superior = q3 + 1.5 * iqr
     
+    st.write("### Rango normal de temperaturas:")
+    st.write(f"El rango normal de temperaturas es de {limite_inferior} a {limite_superior}")
 
+    st.code("""
+        #Total de anomalías
+        print("\nEl total de anómalas encontradas son: ", df_temperaturas['Anomaly'].sum())
+    """)
 
+    # Total de anomalías
+    total_anomalias = df_temperaturas['Anomaly'].sum()
+    
+    st.write("### Total de anomalías encontradas:")
+    st.write(f"El total de anomalías encontradas es: {total_anomalias}")
 
+    st.code("""
+        # Agregar columna de 'Mes'
+        df_temperaturas['Mes'] = df_temperaturas['Fecha'].dt.month
+        
+        
+        # Agrupar por 'Mes' y sumar 'Anomaly'
+        anomalias_por_mes = df_temperaturas.groupby('Mes')['Anomaly'].sum()
+        anomalias_por_mes = anomalias_por_mes.drop(4) # No hay datos para el mes 4
+        
+        # Gráfica de anomalías por mes
+        plt.figure(figsize=(10, 6))
+        anomalias_por_mes.plot(kind='bar')
+        plt.xlabel('Mes')
+        plt.ylabel('Cantidad de Anomalías')
+        plt.title('Cantidad de Anomalías por Mes')
+        plt.grid(True)
+        plt.show()
+    """)
+
+    # Agregar columna de 'Mes'
+    df_temperaturas['Mes'] = df_temperaturas['Fecha'].dt.month
+    
+    # Agrupar por 'Mes' y sumar 'Anomaly'
+    anomalias_por_mes = df_temperaturas.groupby('Mes')['Anomaly'].sum()
+    anomalias_por_mes = anomalias_por_mes.drop(4)  # No hay datos para el mes 4
+    
+    # Gráfica de anomalías por mes
+    st.write("### Cantidad de Anomalías por Mes")
+    plt.figure(figsize=(10, 6))
+    anomalias_por_mes.plot(kind='bar')
+    plt.xlabel('Mes')
+    plt.ylabel('Cantidad de Anomalías')
+    plt.title('Cantidad de Anomalías por Mes')
+    plt.grid(True)
+    st.pyplot(plt)
+    
 
 
 
