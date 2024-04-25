@@ -593,21 +593,11 @@ elif actividad == "Actividad 3":
     # Configuración de Streamlit
     st.write("### Lecturas de Temperatura con Anomalía Detectada")
     
-    # Crear gráfico de matplotlib
-    fig, ax = plt.subplots()
-    ax.plot(df_temperaturas['Fecha'], df_temperaturas['Temperaturas'], label='Temperaturas')
-    ax.scatter(df_temperaturas.loc[df_temperaturas['Anomaly'], 'Fecha'], df_temperaturas.loc[df_temperaturas['Anomaly'], 'Temperaturas'], color='red', label='Anomalía', marker='x', s=100)  # Marcar anomalías con una X roja
-    ax.set_xlabel('Fecha')
-    ax.set_ylabel('Temperatura')
-    ax.set_title('Lecturas de Temperatura con Anomalía Detectada')
-    ax.legend()
-    ax.grid(True)
-    
-    # Mostrar gráfico en Streamlit
-    st.pyplot(fig)
-    
-    
-    
+    # Gráfico interactivo de temperaturas y anomalías
+    st.line_chart(df_temperaturas.set_index('Fecha'))
+        
+        
+        
     
 
 
