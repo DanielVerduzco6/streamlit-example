@@ -663,67 +663,30 @@ elif actividad == "Actividad 3":
     plt.grid(True)
     st.pyplot(plt)
 
-    st.code("""
-        # Calcular la media móvil con una ventana de 24 horas
-        df_temperaturas['Moving_Avg'] = df_temperaturas['Temperaturas'].rolling(window=24).mean()
+
+    st.write("""
+        #### Parte 2 y 3
         
-        # Gráfica de temperaturas, anomalías y media móvil
-        plt.figure(figsize=(15, 6))
-        plt.plot(df_temperaturas['Fecha'], df_temperaturas['Temperaturas'], label='Temperaturas')
-        plt.plot(df_temperaturas['Fecha'], df_temperaturas['Moving_Avg'], label='Media Móvil', color='orange')
-        plt.scatter(df_temperaturas.loc[df_temperaturas['Anomaly'], 'Fecha'], df_temperaturas.loc[df_temperaturas['Anomaly'], 'Temperaturas'], color='red', label='Anomalía', marker='x', s=100) # Marcar anomalías con una X roja
-        plt.xlabel('Fecha')
-        plt.ylabel('Temperatura')
-        plt.title('Lecturas de Temperatura con Anomalía Detectada y Media Móvil')
-        plt.legend()
+        Parte 2: Análisis de Datos
         
-        plt.grid(True)
-        plt.show()
+        Una vez que hayas generado los datos, realiza un análisis para identificar posibles anomalías en las lecturas de temperatura. Algunas preguntas que podrías explorar incluyen:
+        - ¿Existen lecturas de temperatura que se desvíen significativamente del rango esperado para esa área de la planta? **Sí**, podemos observar una superior a 40.
+        - ¿Hay algún patrón o tendencia en las lecturas anómalas? **No**.
+        - ¿Qué características tienen las lecturas anómalas en comparación con las lecturas normales? Las lecturas anómalas tienen muchos menos datos en comparación con las lecturas normales y suelen ser valores extremadamente altos o bajos.
+        
+        Parte 3: Informe de Resultados
+        
+        Escribe un informe que resuma tus hallazgos. Incluye gráficos o visualizaciones que ayuden a identificar las anomalías en los datos de temperatura. Además, discute cualquier insight o conclusión que hayas obtenido del análisis de los datos y cómo podrían utilizarse para mejorar el mantenimiento preventivo o la eficiencia en la planta de manufactura.
+        
+        ##### Análisis de los resultados
+        
+        Como podemos observar, los datos de temperatura generados a lo largo de la serie de tiempo corresponden a los primeros 3 meses del año 2024, donde consideramos los valores 14.55 a 25.47 como valores de temperatura normales para el área correspondiente en la planta de manufactura. Por mes, podemos observar la cantidad de ocurrencias de temperaturas anómalas. En el primer mes, que corresponde a Enero, tenemos 16 temperaturas anómalas; para Febrero, tenemos 17 temperaturas anómalas contabilizadas; y para Marzo, 11.
+        
+        Al graficar los datos, podemos observar que hay ciertos valores que corresponden a valores de temperatura que, según el área en el que están, se clasifican como anómalos. De estos valores anómalos, tenemos 44, los cuales no parecen seguir un patrón o tendencia, salvo que por mes superan mas de los 10 casos. De igual manera, podemos apreciar la media móvil de nuestros datos, viendo cómo ésta tiende a subir o bajar sin un patrón aparente en las gráficas generadas.
+            
     """)
 
-    # Generar datos
-    np.random.seed(0)
-    horas = pd.date_range(start='2024-01-01', end='2024-04-01', freq='H')
-    temperaturas = np.random.normal(loc=20, scale=2, size=len(horas))  # Lecturas de temperatura normales
-    
-    # Introducir anomalías
-    indices_anomalos = np.random.choice(range(len(horas)), size=50, replace=False)
-    temperaturas[indices_anomalos] += np.random.normal(loc=10, scale=2, size=len(indices_anomalos))  # Hacer las anomalías significativamente más grandes
-    
-    # Crear DataFrame
-    df_temperaturas = pd.DataFrame({'Fecha': horas, 'Temperaturas': temperaturas})
-    
-    # Utilizar Isolation Forest para detectar anomalías
-    iso_forest = IsolationForest(contamination=0.02)  # Suponemos que aproximadamente el 2% de los datos son anomalías
-    anomalies = iso_forest.fit_predict(df_temperaturas[['Temperaturas']])
-    df_temperaturas['Anomaly'] = anomalies == -1
-    
-    # Configuración de Streamlit
-    st.write("### Lecturas de Temperatura con Anomalía Detectada")
-    
-    # Gráfico interactivo de temperaturas y anomalías
-    st.line_chart(df_temperaturas.set_index('Fecha'))
-    
-    # Calcular la media móvil con una ventana de 24 horas
-    df_temperaturas['Moving_Avg'] = df_temperaturas['Temperaturas'].rolling(window=24).mean()
-    
-    # Gráfico de temperaturas, anomalías y media móvil
-    st.write("### Lecturas de Temperatura con Anomalía Detectada y Media Móvil")
-    plt.figure(figsize=(15, 6))
-    plt.plot(df_temperaturas['Fecha'], df_temperaturas['Temperaturas'], label='Temperaturas')
-    plt.plot(df_temperaturas['Fecha'], df_temperaturas['Moving_Avg'], label='Media Móvil', color='orange')
-    plt.scatter(df_temperaturas.loc[df_temperaturas['Anomaly'], 'Fecha'], df_temperaturas.loc[df_temperaturas['Anomaly'], 'Temperaturas'], color='red', label='Anomalía', marker='x', s=100) # Marcar anomalías con una X roja
-    plt.xlabel('Fecha')
-    plt.ylabel('Temperatura')
-    plt.title('Lecturas de Temperatura con Anomalía Detectada y Media Móvil')
-    plt.legend()
-    
-    plt.grid(True)
-    st.pyplot(plt)
 
-
-
-    
 
 
 
