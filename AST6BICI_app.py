@@ -8,16 +8,28 @@ from sklearn.ensemble import IsolationForest
 from statsmodels.tsa.stattools import adfuller
 
 # Portada principal
-st.write("# **Análisis de series temporales**")
-st.write("## **Compendio de actividades y ejercicios**")
-st.write("**Estudiante: Verduzco Valencia Daniel Alejandro**")
-st.write("**Profesor: Mata Lopez Walter Alexander**")
-st.write("**6.-B**")
-st.write("**Ingeniería en Computación Inteligente**")
-st.write("**Universidad de Colima**")
-st.write("**FIME**")
-st.write("**26/04/2024**")
-st.image("https://www.ucol.mx/content/cms/41/image/escudos.png", use_column_width=True)
+    st.markdown("""
+    <div align="center">
+        
+    # **Análisis de series temporales**
+    
+    ## **Proyecto de Ejercicios de la 2da parcial en Streamlit**
+    
+    **Estudiante: Verduzco Valencia Daniel Alejandro**
+    
+    **Profesor: Mata Lopez Walter Alexander**
+    
+    **6.-B**
+    
+    **Ingeniería en Computación Inteligente**  
+    **Universidad de Colima**  
+    **FIME**
+    
+    **26/04/2024**
+    
+    ![Logo de la Universidad de Colima](https://www.ucol.mx/content/cms/41/image/escudos.png)
+    </div>
+    """, unsafe_allow_html=True)
 
 # Menú desplegable para acceder a las actividades
 actividad = st.selectbox("Seleccione una actividad:", ["Actividad 1", "Actividad 2", "Actividad 3", "Actividad 4"])
