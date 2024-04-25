@@ -883,7 +883,7 @@ elif actividad == "Actividad 4":
         
         #Aplicar prueba ADF a la serie transformada
         resultado = adfuller(serie_transformada)
-        print('\n\nSerie Transformada')
+        print('\nSerie Transformada')
         print('Estadístico ADF:', resultado[0])
         print('Valor p:', resultado[1])
         
