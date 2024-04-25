@@ -606,11 +606,10 @@ elif actividad == "Actividad 3":
     
     # Convertir la gráfica a un formato que Streamlit pueda mostrar
     st.pyplot(fig)
-        
-        
-        
-        
-        
+            
+            
+            
+            
 
 
 
