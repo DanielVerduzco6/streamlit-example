@@ -606,38 +606,36 @@ elif actividad == "Actividad 3":
             plt.grid(True)
             plt.show()
     """)
-        # Generar datos
-        np.random.seed(0)
-        horas = pd.date_range(start='2024-01-01', end='2024-04-01', freq='H')
-        temperaturas = np.random.normal(loc=20, scale=2, size=len(horas)) # Lecturas de temperatura normales
-        
-        # Introducir anomalías
-        indices_anomalos = np.random.choice(range(len(horas)), size=50, replace=False)
-        temperaturas[indices_anomalos] += np.random.normal(loc=10, scale=2, size=len(indices_anomalos)) # Hacer las anomalías significativamente más grandes
-        
-        # Crear DataFrame
-        df_temperaturas = pd.DataFrame({'Fecha': horas, 'Temperaturas': temperaturas})
-        
-        # Utilizar Isolation Forest para detectar anomalías
-        iso_forest = IsolationForest(contamination=0.02) # Suponemos que aproximadamente el 2% de los datos son anomalías
-        anomalies = iso_forest.fit_predict(df_temperaturas[['Temperaturas']])
-        df_temperaturas['Anomaly'] = anomalies == -1
-        
-        # Gráfica de temperaturas y anomalías
-        st.subheader('Gráfica de temperaturas y anomalías')
-        fig, ax = plt.subplots(figsize=(15, 6))
-        ax.plot(df_temperaturas['Fecha'], df_temperaturas['Temperaturas'], label='Temperaturas')
-        ax.scatter(df_temperaturas.loc[df_temperaturas['Anomaly'], 'Fecha'], df_temperaturas.loc[df_temperaturas['Anomaly'], 'Temperaturas'], color='red', label='Anomalía', marker='x', s=100) # Marcar anomalías con una X roja
-        ax.set_xlabel('Fecha')
-        ax.set_ylabel('Temperatura')
-        ax.set_title('Lecturas de Temperatura con Anomalía Detectada')
-        ax.legend()
-        ax.grid(True)
-        
-        # Mostrar gráfica en Streamlit
-        st.pyplot(fig)
-        
-
+    # Generar datos
+    np.random.seed(0)
+    horas = pd.date_range(start='2024-01-01', end='2024-04-01', freq='H')
+    temperaturas = np.random.normal(loc=20, scale=2, size=len(horas)) # Lecturas de temperatura normales
+    
+    # Introducir anomalías
+    indices_anomalos = np.random.choice(range(len(horas)), size=50, replace=False)
+    temperaturas[indices_anomalos] += np.random.normal(loc=10, scale=2, size=len(indices_anomalos)) # Hacer las anomalías significativamente más grandes
+    
+    # Crear DataFrame
+    df_temperaturas = pd.DataFrame({'Fecha': horas, 'Temperaturas': temperaturas})
+    
+    # Utilizar Isolation Forest para detectar anomalías
+    iso_forest = IsolationForest(contamination=0.02) # Suponemos que aproximadamente el 2% de los datos son anomalías
+    anomalies = iso_forest.fit_predict(df_temperaturas[['Temperaturas']])
+    df_temperaturas['Anomaly'] = anomalies == -1
+    
+    # Gráfica de temperaturas y anomalías
+    st.subheader('Gráfica de temperaturas y anomalías')
+    fig, ax = plt.subplots(figsize=(15, 6))
+    ax.plot(df_temperaturas['Fecha'], df_temperaturas['Temperaturas'], label='Temperaturas')
+    ax.scatter(df_temperaturas.loc[df_temperaturas['Anomaly'], 'Fecha'], df_temperaturas.loc[df_temperaturas['Anomaly'], 'Temperaturas'], color='red', label='Anomalía', marker='x', s=100) # Marcar anomalías con una X roja
+    ax.set_xlabel('Fecha')
+    ax.set_ylabel('Temperatura')
+    ax.set_title('Lecturas de Temperatura con Anomalía Detectada')
+    ax.legend()
+    ax.grid(True)
+    
+    # Mostrar gráfica en Streamlit
+    st.pyplot(fig)
 
 
 
