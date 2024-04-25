@@ -694,3 +694,125 @@ elif actividad == "Actividad 3":
 elif actividad == "Actividad 4":
     st.write('### Código 4: Análisis de Estacionariedad de una Serie Temporal')
     # Aquí va el código 4
+
+    st.markdown("""
+    <div align="center">
+        
+    # **Análisis de series temporales**
+    
+    ## **Actividad: Análisis de Estacionariedad de una Serie Temporal**
+    
+    **Estudiante: Verduzco Valencia Daniel Alejandro**
+    
+    **Profesor: Mata Lopez Walter Alexander**
+    
+    **6.-B**
+    
+    **Ingeniería en Computación Inteligente**  
+    **Universidad de Colima**  
+    **FIME**
+    
+    **22/04/2024**
+    
+    ![Logo de la Universidad de Colima](https://www.ucol.mx/content/cms/41/image/escudos.png)
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Problema
+    st.write("### Análisis de Estacionariedad de una Serie Temporal")
+    st.write("Se tiene un conjunto de datos que representa la temperatura media mensual de una ciudad a lo largo de varios años. La serie de tiempo ha mostrado fluctuaciones que podrían ser tanto estacionales como tendenciales.")
+    st.write("#### Datos:")
+    st.write("Los datos se van a generar mediante el siguiente código en Python, que simula la temperatura media mensual en grados Celsius a lo largo de 10 años con una tendencia y estacionalidad anual:")
+    st.code("""
+        import pandas as pd
+        import numpy as np
+        import matplotlib.pyplot as plt
+        
+        np.random.seed(0)
+        t = np.arange(120)
+        data = 20 + 0.05 * t + 10 * np.sin(2 * np.pi * t / 12) + np.random.normal(size=120)
+        serie_temporal = pd.Series(data, index=pd.date_range(start='2010-01-01', periods=120, freq='M'))
+            
+    """)
+
+    # Generar datos
+    np.random.seed(0)
+    t = np.arange(120)
+    data = 20 + 0.05 * t + 10 * np.sin(2 * np.pi * t / 12) + np.random.normal(size=120)
+    serie_temporal = pd.Series(data, index=pd.date_range(start='2010-01-01', periods=120, freq='M'))
+
+    st.write("""
+        Actividades:
+        
+        1. Visualización de la Serie Temporal: Grafica la serie temporal completa y determina visualmente si muestra estacionalidad, tendencia o ambas. Escribe tus observaciones
+        
+        2. Transformaciones: Aplica una transformación de diferenciación a la serie para intentar hacerla estacionaria. Grafica la serie original y la serie transformada en el mismo gráfico para compararlas.
+        
+        3. Pruebas de Estacionariedad: Realiza la prueba de Dickey-Fuller aumentada (ADF) para la serie original y la serie transformada. Interpreta los resultados de las pruebas. Explica si alguna de las series (original o transformada) puede considerarse estacionaria según los resultados de las pruebas.
+        
+        Entrega:
+        Deberás entregar un informe que incluya:
+        - Código utilizado para las transformaciones y pruebas.
+        - Gráficos generados.
+        - Análisis y explicaciones de cada paso.
+        - Conclusiones sobre la estacionariedad de la serie y la efectividad de las transformaciones aplicadas.
+    
+    """)
+
+    st.write("#### Paso 1:")
+    st.write("1. Visualización de la Serie Temporal: Grafica la serie temporal completa y determina visualmente si muestra estacionalidad, tendencia o ambas. Escribe tus observaciones")
+    st.code("""
+        # Graficar la serie temporal
+        plt.figure(figsize=(10, 6))
+        serie_temporal.plot()
+        plt.title('Serie Temporal de Temperatura Mensual')
+        plt.xlabel('Fecha')
+        plt.ylabel('Temperatura (°C)')
+        plt.grid(True)
+        plt.show()
+    """)
+
+    # Gráfico de la serie temporal con Matplotlib
+    plt.figure(figsize=(10, 6))
+    serie_temporal.plot()
+    plt.title('Serie Temporal de Temperatura Mensual')
+    plt.xlabel('Fecha')
+    plt.ylabel('Temperatura (°C)')
+    plt.grid(True)
+    st.pyplot(plt)  # Mostrar el gráfico en Streamlit
+
+    st.code("""
+        #Factor de suavizado
+        alfa = 0.2
+        serie_suavizada = serie_temporal.ewm(alpha=alfa).mean()
+        
+        #Vizualizar
+        plt.figure(figsize=(10, 6))
+        plt.plot(serie_temporal, label='Serie Temporal')
+        plt.plot(serie_suavizada, label='Serie Suavizada', color='red')
+        plt.title('Serie Temporal de Temperatura Mensual Suavizada')
+        plt.xlabel('Fecha')
+        plt.ylabel('Temperatura (°C)')
+        plt.legend()
+        plt.grid(True)
+        plt.show()
+    """)
+
+    # Factor de suavizado
+    alfa = 0.2
+    serie_suavizada = serie_temporal.ewm(alpha=alfa).mean()
+    
+    # Gráfico de la serie temporal y suavizada con Matplotlib
+    plt.figure(figsize=(10, 6))
+    plt.plot(serie_temporal, label='Serie Temporal')
+    plt.plot(serie_suavizada, label='Serie Suavizada', color='red')
+    plt.title('Serie Temporal de Temperatura Mensual Suavizada')
+    plt.xlabel('Fecha')
+    plt.ylabel('Temperatura (°C)')
+    plt.legend()
+    plt.grid(True)
+    st.pyplot(plt)  # Mostrar el gráfico en Streamlit
+    
+
+
+
