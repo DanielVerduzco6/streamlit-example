@@ -681,22 +681,28 @@ elif actividad == "Actividad 3":
         plt.show()
     """)
 
-    # Calcular la media móvil con una ventana de 24 horas
-    df_temperaturas['Moving_Avg'] = df_temperaturas['Temperaturas'].rolling(window=24).mean()
+    # Generar datos
+    np.random.seed(0)
+    horas = pd.date_range(start='2024-01-01', end='2024-04-01', freq='H')
+    temperaturas = np.random.normal(loc=20, scale=2, size=len(horas))  # Lecturas de temperatura normales
     
-    # Gráfica de temperaturas, anomalías y media móvil
-    st.write("### Lecturas de Temperatura con Anomalía Detectada y Media Móvil")
-    plt.figure(figsize=(15, 6))
-    plt.plot(df_temperaturas['Fecha'], df_temperaturas['Temperaturas'], label='Temperaturas')
-    plt.plot(df_temperaturas['Fecha'], df_temperaturas['Moving_Avg'], label='Media Móvil', color='orange')
-    plt.scatter(df_temperaturas.loc[df_temperaturas['Anomaly'], 'Fecha'], df_temperaturas.loc[df_temperaturas['Anomaly'], 'Temperaturas'], color='red', label='Anomalía', marker='x', s=100) # Marcar anomalías con una X roja
-    plt.xlabel('Fecha')
-    plt.ylabel('Temperatura')
-    plt.title('Lecturas de Temperatura con Anomalía Detectada y Media Móvil')
-    plt.legend()
+    # Introducir anomalías
+    indices_anomalos = np.random.choice(range(len(horas)), size=50, replace=False)
+    temperaturas[indices_anomalos] += np.random.normal(loc=10, scale=2, size=len(indices_anomalos))  # Hacer las anomalías significativamente más grandes
     
-    plt.grid(True)
-    st.pyplot(plt)
+    # Crear DataFrame
+    df_temperaturas = pd.DataFrame({'Fecha': horas, 'Temperaturas': temperaturas})
+    
+    # Utilizar Isolation Forest para detectar anomalías
+    iso_forest = IsolationForest(contamination=0.02)  # Suponemos que aproximadamente el 2% de los datos son anomalías
+    anomalies = iso_forest.fit_predict(df_temperaturas[['Temperaturas']])
+    df_temperaturas['Anomaly'] = anomalies == -1
+    
+    # Configuración de Streamlit
+    st.write("### Lecturas de Temperatura con Anomalía Detectada")
+    
+    # Gráfico interactivo de temperaturas y anomalías
+    st.line_chart(df_temperaturas.set_index('Fecha'))
 
 
 
