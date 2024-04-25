@@ -593,13 +593,10 @@ elif actividad == "Actividad 3":
     # Configuración de Streamlit
     st.write("### Lecturas de Temperatura con Anomalía Detectada")
     
-    # Convertir la columna 'Fecha' en el índice del DataFrame
-    df_temperaturas.set_index('Fecha', inplace=True)
-    
     # Gráfica de temperaturas y anomalías
     fig, ax = plt.subplots(figsize=(15, 6))
-    ax.plot(df_temperaturas.index, df_temperaturas['Temperaturas'], label='Temperaturas')
-    ax.scatter(df_temperaturas.index[df_temperaturas['Anomaly']], df_temperaturas.loc[df_temperaturas['Anomaly'], 'Temperaturas'], color='red', label='Anomalía', marker='x', s=100)  # Marcar anomalías con una X roja
+    ax.plot(df_temperaturas['Fecha'], df_temperaturas['Temperaturas'], label='Temperaturas')
+    ax.scatter(df_temperaturas.loc[df_temperaturas['Anomaly'], 'Fecha'], df_temperaturas.loc[df_temperaturas['Anomaly'], 'Temperaturas'], color='red', label='Anomalía', marker='x', s=100)  # Marcar anomalías con una X roja
     ax.set_xlabel('Fecha')
     ax.set_ylabel('Temperatura')
     ax.set_title('Lecturas de Temperatura con Anomalía Detectada')
@@ -607,13 +604,13 @@ elif actividad == "Actividad 3":
     
     ax.grid(True)
     st.pyplot(fig)
-
-
-
-
-
-
-
+    
+    
+    
+    
+    
+    
+    
 
 
 
