@@ -950,3 +950,15 @@ elif actividad == "Actividad 4":
     plt.grid(True)
     st.pyplot(plt)  # Mostrar el gráfico en Streamlit
 
+    st.write("""
+        ##### Interpretación de las gráficas y conclusiones
+        
+        Podemos observar cómo en la primera gráfica, que es la original, no puede ser categorizada como estacionaria debido a las características que presentan los datos en ella al seguir una estacionalidad y tendencia a lo largo de la serie temporal.
+        
+        Por otro lado, podemos observar la segunda gráfica en la que se ha transformado la serie de tiempo a estacionaria, eliminando así las tendencias y ciclos estacionales para poder mantener valores constantes a lo largo de la serie de tiempo.
+        
+        Esto es importante, ya que gracias a que se ha transformado la serie temporal inicialmente no estacionaria a estacionaria, las predicciones en dicha serie de tiempo ahora pueden ser menos sesgadas y más exactas.
+        
+    """)
+
+
