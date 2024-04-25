@@ -8,8 +8,7 @@ from sklearn.ensemble import IsolationForest
 from statsmodels.tsa.stattools import adfuller
 
 # Portada principal
-    st.write('### Proyecto de Ejercicios de la 2da parcial en Streamlit')
-    st.markdown("""
+st.markdown("""
     <div align="center">
         
     # **Análisis de series temporales**
