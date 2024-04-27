@@ -36,7 +36,6 @@ actividad = st.selectbox("Seleccione una actividad:", ["Actividad 1", "Actividad
 
 if actividad == "Actividad 1":
     st.write('### Código 1: Estadísticas descriptivas')
-    # Aquí va el código 1
 
     st.markdown("""
     <div align="center">
@@ -160,8 +159,6 @@ if actividad == "Actividad 1":
     
     # Mostrar la gráfica en Streamlit
     st.pyplot(fig)
-#########################################################3
-
 
     # 3. Interpretar los Resultados
     st.write("### 3. Interpretar los Resultados:")
@@ -265,19 +262,9 @@ if actividad == "Actividad 1":
     st.write("**Implicaciones y Recomendaciones:**")
     st.write("En base a las estadísticas obtenidas y los graficos analizados los salarios no son muy equitativos entre el personal de la empresa, por lo que se sugiere revisar la equidad salarial dentro de la empresa para garantizar una distribución justa de compensaciones.")
 
-
-
-
-
-
-
-
-
-
 elif actividad == "Actividad 2":
     st.write('### Código 2: Tarea de patrones')
-    # Aquí va el código 2
-
+    
     st.markdown("""
     <div align="center">
         
@@ -497,22 +484,9 @@ elif actividad == "Actividad 2":
             
     """)
             
-     
-
-
-
-
-
-
-
-
-
-
-
-
 elif actividad == "Actividad 3":
     st.write('### Código 3: Tarea de Anomalías')
-    # Aquí va el código 3
+    
     st.markdown("""
     <div align="center">
         
@@ -676,7 +650,6 @@ elif actividad == "Actividad 3":
     plt.grid(True)
     st.pyplot(plt)
 
-
     st.write("""
         #### Parte 2 y 3
         
@@ -700,14 +673,9 @@ elif actividad == "Actividad 3":
     """)
 
 
-
-
-
-
 elif actividad == "Actividad 4":
     st.write('### Código 4: Análisis de Estacionariedad de una Serie Temporal')
-    # Aquí va el código 4
-
+    
     st.markdown("""
     <div align="center">
         
@@ -972,5 +940,3 @@ elif actividad == "Actividad 4":
         Esto es importante, ya que gracias a que se ha transformado la serie temporal inicialmente no estacionaria a estacionaria, las predicciones en dicha serie de tiempo ahora pueden ser menos sesgadas y más exactas.
         
     """)
-
-
